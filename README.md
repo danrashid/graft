@@ -1,4 +1,4 @@
 graft
 =====
 
-A handful of little graphs
+A handful of time-series graphs
