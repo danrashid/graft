@@ -1,5 +1,6 @@
 /* global Graft, $: false */
 'use strict';
 
-Graft.bubbles = function ($el, data) {
+Graft.bubbles = function (sel, data) {
+  var $el = $(sel);
 };

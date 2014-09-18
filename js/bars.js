@@ -1,5 +1,6 @@
 /* global Graft, $: false */
 'use strict';
 
-Graft.bars = function ($el, data) {
+Graft.bars = function (sel, data) {
+  var $el = $(sel);
 };

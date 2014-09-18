@@ -8,6 +8,7 @@ head
   link(rel="stylesheet" type="text/css" href="lib/normalize.css")
   link(rel="stylesheet" type="text/css" href="app.css")
   script(type="text/javascript" src="lib/zepto.min.js")
+  script(type="text/javascript" src="lib/zepto.data.js")
   script(type="text/javascript" src="js/app.js")
   script(type="text/javascript" src="js/bars.js")
   script(type="text/javascript" src="js/bubbles.js")
@@ -17,6 +18,13 @@ head
   script(type="text/javascript" src="js/stub.js")
 
 body
+  #donut
+  #bars
+  #bubbles
   script(type='text/javascript').
     var data = Graft.stub();
+
+    Graft.donut('#donut', data);
+    Graft.bars('#bars', data);
+    Graft.bubbles('#bubbles', data);
 </html>

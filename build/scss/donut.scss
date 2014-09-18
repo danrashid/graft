@@ -1,0 +1,43 @@
+.graft.donut {
+  position: relative;
+  overflow: hidden;
+
+  &, .hole {
+    border-radius: 50%;
+  }
+
+  .hole {
+    background: white;
+    position: absolute;
+    width: 60%;
+    height: 60%;
+    top: 20%;
+    left: 20%;
+    z-index: 1;
+  }
+
+  .slice {
+    cursor: pointer;
+
+    &:not(:last-child) {
+      position: absolute;
+      width: 9999rem;
+      height: 9999rem;
+      bottom: 50%;
+      left: 50%;
+      -ms-transform-origin: 0 100%;
+      -webkit-transform-origin: 0 100%;
+      transform-origin: 0 100%;
+      border-left: 1rem solid white;
+    }
+
+    &:nth-last-child(2) {
+      border-bottom: 1rem solid white;
+    }
+
+    &:last-child {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

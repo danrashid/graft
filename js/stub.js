@@ -13,7 +13,8 @@ Graft.stub = function () {
       {color: 'Purple', name: 'The Fifth'}
     ];
 
-  data.forEach(function (d) {
+  data.forEach(function (d, i) {
+    d.id = i;
     d.values = [];
     d.total = 0;
 
@@ -25,10 +26,6 @@ Graft.stub = function () {
       d.values.push([t, v]);
       d.total += v;
     }
-  });
-
-  data.sort(function (a, b) {
-    return b.total > a.total;
   });
 
   return data;
