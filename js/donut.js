@@ -1,13 +1,38 @@
 /* global Graft, $: false */
 'use strict';
 
-Graft.donut = function (sel, data) {
+Graft.donut = function (sel, data, spaceDeg) {
+  spaceDeg = spaceDeg || 5;
+
+  function getSkewY(deg) {
+    return Math.min(deg - 90, 89);
+  }
+
+  function getTransformRules(start, deg) {
+    var skewY = getSkewY(deg),
+      transform = 'rotate(' + start + 'deg) skewY(' + skewY + 'deg)';
+
+    return {
+      '-ms-transform': transform,
+      '-webkit-transform': transform,
+      transform: transform
+    };
+  }
+
+  function appendSpace() {
+    $('<div class="space">')
+      .css(getTransformRules(start, spaceDeg))
+      .appendTo($donut);
+
+    start += spaceDeg;
+  }
+
   var $el = $(sel),
     $donut = $('<div class="graft donut"><div class="hole">'),
     total = data.reduce(function (a, b) {
       return a + b.total;
     }, 0),
-    start = 0,
+    start = -spaceDeg,
     slices = data.map(function (d) {
       return {
         id: d.id,
@@ -16,29 +41,37 @@ Graft.donut = function (sel, data) {
         total: d.total,
         ratio: d.total / total
       };
-    });
+    }),
+    lastSlice;
 
   slices.sort(function (a, b) {
     return a.total - b.total;
   });
 
-  slices.forEach(function (d, i) {
-    var deg = Math.floor(360 * d.ratio),
-      skewY = Math.min(deg - 90, 89),
-      transform = i < slices.length - 1 ? 'rotate(' + start + 'deg) skewY(' + skewY + 'deg)' : null;
+  lastSlice = slices.pop();
 
-    start += deg;
+  slices.forEach(function (d, i) {
+    var sliceDeg = Math.floor(360 * d.ratio) - spaceDeg;
+
+    appendSpace();
 
     $('<div class="slice">')
       .data(d)
-      .css({
-        background: d.color,
-        '-ms-transform': transform,
-        '-webkit-transform': transform,
-        transform: transform
-      })
+      .css('background', d.color)
+      .css(getTransformRules(start, sliceDeg))
       .appendTo($donut);
+
+    start += sliceDeg;
+
+    if (i === slices.length - 1) {
+      appendSpace();
+    }
   });
+
+  $('<div class="slice">')
+    .data(lastSlice)
+    .css('background', lastSlice.color)
+    .appendTo($donut);
 
   $donut
     .height($el.width())

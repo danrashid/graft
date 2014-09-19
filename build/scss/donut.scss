@@ -16,24 +16,23 @@
     z-index: 1;
   }
 
+  .space, .slice:not(:last-child) {
+    position: absolute;
+    width: 9999rem;
+    height: 9999rem;
+    bottom: 50%;
+    left: 50%;
+    -ms-transform-origin: 0 100%;
+    -webkit-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+  }
+
+  .space {
+    background: White;
+  }
+
   .slice {
     cursor: pointer;
-
-    &:not(:last-child) {
-      position: absolute;
-      width: 9999rem;
-      height: 9999rem;
-      bottom: 50%;
-      left: 50%;
-      -ms-transform-origin: 0 100%;
-      -webkit-transform-origin: 0 100%;
-      transform-origin: 0 100%;
-      border-left: 1rem solid White;
-    }
-
-    &:nth-last-child(2) {
-      border-bottom: 1rem solid White;
-    }
 
     &:last-child {
       width: 100%;
