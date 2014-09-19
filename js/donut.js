@@ -88,11 +88,9 @@ $(window).on('resize', function () {
 
 $(document).on('click', '.slice', function (e) {
   var $slice = $(this),
-    percent = Math.round($slice.data('ratio') * 10000) / 100;
+    percent = Math.round($slice.data('ratio') * 10000) / 100,
+    html = '<div style="color:' + $slice.data('color') + '"><strong>' + percent + '%</strong></div>' +
+      '<div>' + $slice.data('name') + '</div>';
 
-  $(document).trigger('graft:tooltip:show', [
-    e,
-    '<div style="color:' + $slice.data('color') + '"><strong>' + percent + '%</strong></div>' +
-    '<div>' + $slice.data('name') + '</div>'
-  ]);
+  Graft.tooltip.show(e, html);
 });

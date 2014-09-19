@@ -3,33 +3,39 @@
 
 var Graft = {};
 
-$(function() {
-  Graft.$tooltip = $('<div class="graft tooltip">')
-    .appendTo('body');
-});
+Graft.tooltip = (function() {
+  var $el = $('<div class="graft tooltip">');
 
-$(document)
-  .on('graft:tooltip:show', function (E, e, html) {
-    Graft.$tooltip
-      .css('visibility', 'hidden')
+  $(function() {
+    $el.appendTo('body');
+  });
+
+  function show(e, html) {
+    hide();
+
+    $el
       .html(html)
       .css({
-        left: e.pageX - (Graft.$tooltip.width() / 2),
-        top: e.pageY
-      })
-      .css('visibility', 'visible');
-  })
-  .on('graft:tooltip:hide', function () {
-    Graft.$tooltip
-      .css('visibility', 'hidden');
-  })
-  .on('click', function (e) {
-    if ($(e.target).closest(Graft.$tooltip).length === 0) {
-      $(document).trigger('graft:tooltip:hide');
+        left: e.pageX - ($el.width() / 2),
+        top: e.pageY,
+        visibility: 'visible'
+      });
+  }
+
+  function hide() {
+    $el.css('visibility', 'hidden');
+  }
+
+  $(window).on('resize', hide);
+
+  $(document).on('click', function (e) {
+    if ($(e.target).closest($el).length === 0) {
+      hide();
     }
   });
 
-$(window)
-  .on('resize', function () {
-    $(document).trigger('graft:tooltip:hide');
-  });
+  return {
+    show: show,
+    hide: hide
+  };
+})();
