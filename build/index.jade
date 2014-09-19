@@ -24,7 +24,7 @@ body
   script(type='text/javascript').
     var data = Graft.stub();
 
-    Graft.donut('#donut', data);
+    Graft.donut.bind('#donut', data);
     Graft.bars('#bars', data);
     Graft.bubbles('#bubbles', data);
 </html>
