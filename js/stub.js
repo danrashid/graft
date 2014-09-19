@@ -8,7 +8,7 @@ Graft.stub = function () {
     data = [
       {color: 'CornflowerBlue', name: 'The First'},
       {color: 'Crimson', name: 'The Second'},
-      {color: 'LimeGreen', name: 'The Third'},
+      {color: 'LimeGreen', name: 'The Third has a much longer name'},
       {color: 'Orange', name: 'The Fourth'},
       {color: 'Purple', name: 'The Fifth'}
     ];
@@ -21,7 +21,7 @@ Graft.stub = function () {
     var t = start;
 
     for (; t <= end; t += MINUTE) {
-      var v = Math.round(Math.random() * 1000);
+      var v = Math.round(Math.random() * 100 * (i + 1));
 
       d.values.push([t, v]);
       d.total += v;

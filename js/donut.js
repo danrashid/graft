@@ -30,7 +30,7 @@ Graft.donut = function (sel, data) {
     start += deg;
 
     $('<div class="slice">')
-      .data('d', d)
+      .data(d)
       .css({
         background: d.color,
         '-ms-transform': transform,
@@ -51,4 +51,15 @@ $(window).on('resize', function () {
 
     $this.height($this.width());
   });
+});
+
+$(document).on('click', '.slice', function (e) {
+  var $slice = $(this),
+    percent = Math.round($slice.data('ratio') * 10000) / 100;
+
+  $(document).trigger('graft:tooltip:show', [
+    e,
+    '<div style="color:' + $slice.data('color') + '"><strong>' + percent + '%</strong></div>' +
+    '<div>' + $slice.data('name') + '</div>'
+  ]);
 });

@@ -7,7 +7,7 @@
   }
 
   .hole {
-    background: white;
+    background: White;
     position: absolute;
     width: 60%;
     height: 60%;
@@ -28,11 +28,11 @@
       -ms-transform-origin: 0 100%;
       -webkit-transform-origin: 0 100%;
       transform-origin: 0 100%;
-      border-left: 1rem solid white;
+      border-left: 1rem solid White;
     }
 
     &:nth-last-child(2) {
-      border-bottom: 1rem solid white;
+      border-bottom: 1rem solid White;
     }
 
     &:last-child {
