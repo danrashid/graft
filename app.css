@@ -27,11 +27,16 @@ body {
     border-right: .125em solid White; }
     .graft.bars .period:hover {
       background: Gainsboro; }
+    .graft.bars .period.active {
+      background: LightCyan; }
   .graft.bars .bar {
     background: Turquoise;
     position: absolute;
     bottom: 0;
     width: 100%; }
+.graft.tooltip .bars.value {
+  font-weight: bold;
+  color: Turquoise; }
 
 .graft.donut {
   position: relative;
@@ -75,7 +80,7 @@ body {
   background: White;
   padding: 1em;
   visibility: hidden;
-  position: fixed;
+  position: absolute;
   z-index: 2;
   margin-top: 1em; }
   .graft.tooltip:before, .graft.tooltip:after {

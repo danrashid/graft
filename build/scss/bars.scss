@@ -1,35 +1,47 @@
-.graft.bars {
-  position: relative;
+.graft {
 
-  .graph {
-    margin-bottom: 1rem;
-  }
-
-  .max {
-    position: absolute;
-  }
-
-  .name, .period {
-    cursor: pointer;
-  }
-
-  .period {
-    background: WhiteSmoke;
+  &.bars {
     position: relative;
-    float: left;
-    height: 5em;
-    box-sizing: border-box;
-    border-right: .125em solid White;
 
-    &:hover {
-      background: Gainsboro;
+    .graph {
+      margin-bottom: 1rem;
+    }
+
+    .max {
+      position: absolute;
+    }
+
+    .name, .period {
+      cursor: pointer;
+    }
+
+    .period {
+      background: WhiteSmoke;
+      position: relative;
+      float: left;
+      height: 5em;
+      box-sizing: border-box;
+      border-right: .125em solid White;
+
+      &:hover {
+        background: Gainsboro;
+      }
+
+      &.active {
+        background: LightCyan;
+      }
+    }
+
+    .bar {
+      background: Turquoise;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
     }
   }
 
-  .bar {
-    background: Turquoise;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+  &.tooltip .bars.value {
+    font-weight: bold;
+    color: Turquoise;
   }
 }

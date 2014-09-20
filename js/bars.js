@@ -42,7 +42,7 @@ Graft.bars = (function() {
 
       d.values.forEach(function (v) {
         var $period = $('<div class="period">')
-          .data({time: new Date(v[0]), value: v[1]})
+          .data({time: v[0], value: v[1]})
           .css('width', periodWidth + '%')
           .appendTo($graph);
 
@@ -54,7 +54,25 @@ Graft.bars = (function() {
       $graph.appendTo($graphs);
     });
 
-    $graphs.appendTo($el);
+    $graphs
+      .appendTo($el)
+      .on('click', '.period', function (e) {
+        var $this = $(this);
+
+        $graphs
+          .find('.period')
+            .removeClass('active');
+
+        $this.addClass('active');
+
+        Graft.tooltip.show(e, [
+          '<div class="start">' + (new Date($this.data('time')).toLocaleString()) + ' –</div>',
+          '<div class="end">' + (new Date($this.data('time') + span).toLocaleString()) + '</div>',
+          '<div class="bars value">' + $this.data('value') + '</div>'
+        ].join(''));
+
+        return false;
+      });
   }
 
   return {
