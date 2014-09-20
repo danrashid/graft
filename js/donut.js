@@ -2,6 +2,7 @@
 'use strict';
 
 Graft.donut = (function() {
+
   function getSkewY(deg) {
     return Math.min(deg - 90, 89);
   }

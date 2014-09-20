@@ -4,7 +4,7 @@ body {
 .col {
   float: left; }
 
-#donut {
+#donut, #bubbles {
   width: 25%; }
 
 #bars {
@@ -22,7 +22,7 @@ body {
     background: WhiteSmoke;
     position: relative;
     float: left;
-    height: 5em;
+    height: 5rem;
     box-sizing: border-box;
     border-right: .125em solid White; }
     .graft.bars .period:hover {
@@ -37,6 +37,16 @@ body {
 .graft.tooltip .bars.value {
   font-weight: bold;
   color: Turquoise; }
+
+.graft.bubbles {
+  text-align: center; }
+  .graft.bubbles .bubble, .graft.bubbles .name {
+    cursor: pointer; }
+  .graft.bubbles .bubble {
+    display: inline-block;
+    border-radius: 50%; }
+  .graft.bubbles .name {
+    margin-bottom: 1rem; }
 
 .graft.donut {
   position: relative;
