@@ -78,19 +78,16 @@ Graft.donut = (function() {
       .height($el.width())
       .appendTo($el)
       .on('click', '.slice', function () {
-        var $slice = $(this),
-          percent;
+        var $slice = $(this);
 
         if ($slice.hasClass('inactive') || !$slice.siblings('.inactive').length) {
-          percent = Math.round($slice.data('ratio') * 10000) / 100;
-
           $slice
             .removeClass('inactive')
             .siblings()
               .addClass('inactive');
 
           setLabel([
-            '<div class="percent">' + percent + '%</div>',
+            '<div class="percent">' + Graft.percent($slice.data('ratio'), 2) + '%</div>',
             '<div class="name" style="color:' + $slice.data('color') + '">' + $slice.data('name') + '</div>',
             '<div class="total">' + $slice.data('total') + '</div>'
           ].join(''));

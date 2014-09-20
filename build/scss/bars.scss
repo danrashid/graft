@@ -1,11 +1,12 @@
 .graft.bars {
+  position: relative;
 
   .graph {
     margin-bottom: 1rem;
   }
 
   .max {
-    float: right;
+    position: absolute;
   }
 
   .name, .period {

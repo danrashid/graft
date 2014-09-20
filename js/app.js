@@ -3,6 +3,16 @@
 
 var Graft = {};
 
+Graft.percent = function(x, places) {
+  places = places || 1;
+
+  var str = (x+'').substr(2), // Remove leading '0.'
+    front = str.substr(0, 2),
+    back = str.substr(2, places);
+
+  return +(front + '.' + back);
+};
+
 Graft.tooltip = (function() {
   var $el = $('<div class="graft tooltip">');
 

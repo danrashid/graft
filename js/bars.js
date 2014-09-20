@@ -17,10 +17,11 @@ Graft.bars = (function() {
       }),
       resolution = data[0].values[1][0] - data[0].values[0][0],
       span = data[0].values[data[0].values.length - 1][0] - data[0].values[0][0],
-      periodWidth = Math.floor((resolution / span) * 1000) / 1000;
+      periodWidth = Graft.percent(resolution / span),
+      maxRightPosition = 100 - (periodWidth * data[0].values.length);
 
     graphs.sort(function (a, b) {
-      return a.total - b.total;
+      return b.total - a.total;
     });
 
     graphs.forEach(function (d) {
@@ -31,6 +32,7 @@ Graft.bars = (function() {
 
       $('<div class="max">')
         .html(max)
+        .css('right', maxRightPosition + '%')
         .appendTo($graphs);
 
       $('<div class="name">')
@@ -41,11 +43,11 @@ Graft.bars = (function() {
       d.values.forEach(function (v) {
         var $period = $('<div class="period">')
           .data({time: new Date(v[0]), value: v[1]})
-          .css('width', periodWidth * 100 + '%')
+          .css('width', periodWidth + '%')
           .appendTo($graph);
 
         $('<div class="bar">')
-          .css('height', (v[1] / max) * 100 + '%')
+          .css('height', Graft.percent(v[1] / max) + '%')
           .appendTo($period);
       });
 

@@ -10,26 +10,28 @@ body {
 #bars {
   width: 50%; }
 
-.graft.bars .graph {
-  margin-bottom: 1rem; }
-.graft.bars .max {
-  float: right; }
-.graft.bars .name, .graft.bars .period {
-  cursor: pointer; }
-.graft.bars .period {
-  background: WhiteSmoke;
-  position: relative;
-  float: left;
-  height: 5em;
-  box-sizing: border-box;
-  border-right: .125em solid White; }
-  .graft.bars .period:hover {
-    background: Gainsboro; }
-.graft.bars .bar {
-  background: Turquoise;
-  position: absolute;
-  bottom: 0;
-  width: 100%; }
+.graft.bars {
+  position: relative; }
+  .graft.bars .graph {
+    margin-bottom: 1rem; }
+  .graft.bars .max {
+    position: absolute; }
+  .graft.bars .name, .graft.bars .period {
+    cursor: pointer; }
+  .graft.bars .period {
+    background: WhiteSmoke;
+    position: relative;
+    float: left;
+    height: 5em;
+    box-sizing: border-box;
+    border-right: .125em solid White; }
+    .graft.bars .period:hover {
+      background: Gainsboro; }
+  .graft.bars .bar {
+    background: Turquoise;
+    position: absolute;
+    bottom: 0;
+    width: 100%; }
 
 .graft.donut {
   position: relative;
