@@ -13,4 +13,13 @@
   .name {
     margin-bottom: 1rem;
   }
+
+  .inactive {
+    .bubble {
+      background: Silver !important;
+    }
+    .name {
+      color: Gray !important;
+    }
+  }
 }

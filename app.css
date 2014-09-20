@@ -1,5 +1,7 @@
 body {
-  line-height: 1.375em; }
+  font-family: 'Helvetica Neue', sans-serif;
+  line-height: 1.375em;
+  color: #555; }
 
 .col {
   float: left; }
@@ -12,10 +14,11 @@ body {
 
 .graft.bars {
   position: relative; }
-  .graft.bars .graph {
+  .graft.bars .set {
     margin-bottom: 1rem; }
   .graft.bars .max {
-    position: absolute; }
+    position: absolute;
+    color: Silver; }
   .graft.bars .name, .graft.bars .period {
     cursor: pointer; }
   .graft.bars .period {
@@ -34,6 +37,10 @@ body {
     position: absolute;
     bottom: 0;
     width: 100%; }
+  .graft.bars .inactive .name {
+    color: Gray !important; }
+  .graft.bars .inactive .bar {
+    background: Silver; }
 .graft.tooltip .bars.value {
   font-weight: bold;
   color: Turquoise; }
@@ -47,6 +54,10 @@ body {
     border-radius: 50%; }
   .graft.bubbles .name {
     margin-bottom: 1rem; }
+  .graft.bubbles .inactive .bubble {
+    background: Silver !important; }
+  .graft.bubbles .inactive .name {
+    color: Gray !important; }
 
 .graft.donut {
   position: relative;
@@ -66,7 +77,10 @@ body {
     position: relative;
     padding: 10%;
     top: 50%; }
-  .graft.donut .space, .graft.donut .slice:not(:last-child) {
+  .graft.donut .all {
+    font-size: 1.5em;
+    font-weight: 300; }
+  .graft.donut .space, .graft.donut .set:not(:last-child) {
     position: absolute;
     width: 9999rem;
     height: 9999rem;
@@ -77,11 +91,11 @@ body {
     transform-origin: 0 100%; }
   .graft.donut .space {
     background: White; }
-  .graft.donut .slice {
+  .graft.donut .set {
     cursor: pointer; }
-    .graft.donut .slice.inactive {
+    .graft.donut .set.inactive {
       background: Silver !important; }
-    .graft.donut .slice:last-child {
+    .graft.donut .set:last-child {
       width: 100%;
       height: 100%; }
 

@@ -4,6 +4,10 @@
 var Graft = {};
 
 Graft.percent = function(x, places) {
+  if (x >= 1) {
+    return 100;
+  }
+
   places = places || 1;
 
   var str = (x+'').substr(2), // Remove leading '0.'
@@ -11,6 +15,25 @@ Graft.percent = function(x, places) {
     back = str.substr(2, places);
 
   return +(front + '.' + back);
+};
+
+Graft.toggle = function() {
+  var id = $(this).closest('.set').data('id'),
+    $set = $('.graft .set').filter(function () {
+      return $(this).data('id') === id;
+    }),
+    $sets = $set.map(function () {
+      return $(this).closest('.graft').find('.set');
+    });
+
+  if ($set.hasClass('inactive') || !$set.siblings('.inactive').length) {
+    $sets.addClass('inactive');
+    $set.removeClass('inactive');
+    $(document).trigger('graft:select', id);
+  } else {
+    $sets.removeClass('inactive');
+    $(document).trigger('graft:deselect');
+  }
 };
 
 Graft.tooltip = (function() {

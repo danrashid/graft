@@ -23,7 +23,12 @@
     top: 50%;
   }
 
-  .space, .slice:not(:last-child) {
+  .all {
+    font-size: 1.5em;
+    font-weight: 300;
+  }
+
+  .space, .set:not(:last-child) {
     position: absolute;
     width: 9999rem;
     height: 9999rem;
@@ -38,7 +43,7 @@
     background: White;
   }
 
-  .slice {
+  .set {
     cursor: pointer;
 
     &.inactive {

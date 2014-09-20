@@ -36,26 +36,33 @@ Graft.bubbles = (function() {
     });
 
     bubbles.forEach(function (d) {
-      var width = Math.max(maxWidth * (d.diameter / maxDiameter), minWidth);
+      var width = Math.max(maxWidth * (d.diameter / maxDiameter), minWidth),
+        $set = $('<div class="set">');
 
       $('<div class="bubble">')
-        .data(d)
+        .data({total: d.total})
         .css({
           background: d.color,
           width: Graft.percent(width) + '%'
         })
-        .appendTo($bubbles);
+        .appendTo($set);
 
       $('<div class="name">')
         .css('color', d.color)
         .html(d.name)
+        .appendTo($set);
+
+      $set
+        .data(d)
         .appendTo($bubbles);
     });
 
     $bubbles
       .appendTo($el)
+      .on('click', '.name', Graft.toggle)
       .on('click', '.bubble', function (e) {
         Graft.tooltip.show(e, '<div class="bubbles">' + $(this).data('total') + '</div>');
+
         return false;
       })
       .find('.bubble')

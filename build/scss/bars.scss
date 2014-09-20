@@ -3,12 +3,13 @@
   &.bars {
     position: relative;
 
-    .graph {
+    .set {
       margin-bottom: 1rem;
     }
 
     .max {
       position: absolute;
+      color: Silver;
     }
 
     .name, .period {
@@ -37,6 +38,15 @@
       position: absolute;
       bottom: 0;
       width: 100%;
+    }
+
+    .inactive {
+      .name {
+        color: Gray !important;
+      }
+      .bar {
+        background: Silver;
+      }
     }
   }
 

@@ -22,13 +22,13 @@ Graft.donut = (function() {
     $el.css('margin-top', -$el.height() / 2);
   }
 
+  function setLabel($el, html) {
+    $el.html(html);
+    positionLabel($el);
+  }
+
   function bind(sel, data, spaceDeg) {
     spaceDeg = spaceDeg || 5;
-
-    function setLabel(html) {
-      $label.html(html);
-      positionLabel($label);
-    }
 
     var $el = $(sel),
       $donut = $('<div class="graft donut">'),
@@ -36,7 +36,7 @@ Graft.donut = (function() {
       total = data.reduce(function (a, b) {
         return a + b.total;
       }, 0),
-      slices = data.map(function (d) {
+      sets = data.map(function (d) {
         return {
           id: d.id,
           name: d.name,
@@ -51,14 +51,14 @@ Graft.donut = (function() {
       .appendTo($donut)
       .append($label);
 
-    slices.sort(function (a, b) {
+    sets.sort(function (a, b) {
       return a.total - b.total;
     });
 
-    slices.forEach(function (d, i) {
-      var sliceDeg = Math.floor(360 * d.ratio) - spaceDeg;
+    sets.forEach(function (d, i) {
+      var setDeg = Math.floor(360 * d.ratio) - spaceDeg;
 
-      if (slices.length > 1) {
+      if (sets.length > 1) {
         $('<div class="space">')
           .css(getTransformRules(start, spaceDeg))
           .appendTo($donut);
@@ -66,39 +66,22 @@ Graft.donut = (function() {
         start += spaceDeg;
       }
 
-      $('<div class="slice">')
+      $('<div class="set">')
         .data(d)
         .css('background', d.color)
-        .css(i < slices.length - 1 ? getTransformRules(start, sliceDeg) : null)
+        .css(i < sets.length - 1 ? getTransformRules(start, setDeg) : null)
         .appendTo($donut);
 
-      start += sliceDeg;
+      start += setDeg;
     });
 
     $donut
+      .data({total: total})
       .height($el.width())
       .appendTo($el)
-      .on('click', '.slice', function () {
-        var $slice = $(this);
+      .on('click', '.set', Graft.toggle);
 
-        if ($slice.hasClass('inactive') || !$slice.siblings('.inactive').length) {
-          $slice
-            .removeClass('inactive')
-            .siblings()
-              .addClass('inactive');
-
-          setLabel([
-            '<div class="percent">' + Graft.percent($slice.data('ratio'), 2) + '%</div>',
-            '<div class="name" style="color:' + $slice.data('color') + '">' + $slice.data('name') + '</div>',
-            '<div class="total">' + $slice.data('total') + '</div>'
-          ].join(''));
-        } else {
-          $slice.siblings().removeClass('inactive');
-          setLabel(total);
-        }
-      });
-
-    setLabel(total);
+    setLabel($label, '<div class="all">' + total + '</div>');
   }
 
   $(window).on('resize', function () {
@@ -107,6 +90,29 @@ Graft.donut = (function() {
     });
     positionLabel($('.graft.donut .label'));
   });
+
+  $(document)
+    .on('graft:select', function (e, id) {
+      var $set = $('.graft.donut .set').filter(function () {
+          return $(this).data('id') === id;
+        }),
+        $label = $set.closest('.donut').find('.label'),
+        percent = Graft.percent($set.data('ratio'), 2);
+
+      setLabel($label, [
+        '<div class="percent">' + percent + '%</div>',
+        '<div class="name" style="color:' + $set.data('color') + '">' + $set.data('name') + '</div>',
+        '<div class="total">' + $set.data('total') + '</div>'
+      ].join(''));
+    })
+    .on('graft:deselect', function () {
+      $('.graft.donut').each(function () {
+        var $donut = $(this),
+          $label = $donut.find('.label');
+
+        setLabel($label, '<div class="all">' + $donut.data('total') + '</div>');
+      });
+    });
 
   return {
     bind: bind
