@@ -6,3 +6,11 @@
 @import 'legend';
 @import 'stack';
 @import 'tooltips';
+
+/* http://nicolasgallagher.com/micro-clearfix-hack/ */
+
+.clearfix::after {
+  content: ' ';
+  display: table;
+  clear: both;
+}

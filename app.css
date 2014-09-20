@@ -7,6 +7,30 @@ body {
 #donut {
   width: 25%; }
 
+#bars {
+  width: 50%; }
+
+.graft.bars .graph {
+  margin-bottom: 1rem; }
+.graft.bars .max {
+  float: right; }
+.graft.bars .name, .graft.bars .period {
+  cursor: pointer; }
+.graft.bars .period {
+  background: WhiteSmoke;
+  position: relative;
+  float: left;
+  height: 5em;
+  box-sizing: border-box;
+  border-right: .125em solid White; }
+  .graft.bars .period:hover {
+    background: Gainsboro; }
+.graft.bars .bar {
+  background: Turquoise;
+  position: absolute;
+  bottom: 0;
+  width: 100%; }
+
 .graft.donut {
   position: relative;
   overflow: hidden; }
@@ -66,3 +90,9 @@ body {
   .graft.tooltip:after {
     border-bottom-color: White;
     margin-top: 1px; }
+
+/* http://nicolasgallagher.com/micro-clearfix-hack/ */
+.clearfix::after {
+  content: ' ';
+  display: table;
+  clear: both; }

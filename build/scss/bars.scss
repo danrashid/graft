@@ -1,0 +1,34 @@
+.graft.bars {
+
+  .graph {
+    margin-bottom: 1rem;
+  }
+
+  .max {
+    float: right;
+  }
+
+  .name, .period {
+    cursor: pointer;
+  }
+
+  .period {
+    background: WhiteSmoke;
+    position: relative;
+    float: left;
+    height: 5em;
+    box-sizing: border-box;
+    border-right: .125em solid White;
+
+    &:hover {
+      background: Gainsboro;
+    }
+  }
+
+  .bar {
+    background: Turquoise;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+}
