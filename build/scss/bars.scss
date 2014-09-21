@@ -16,6 +16,10 @@
       cursor: pointer;
     }
 
+    .name:hover {
+      text-decoration: underline;
+    }
+
     .period {
       background: WhiteSmoke;
       position: relative;

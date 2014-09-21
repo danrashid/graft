@@ -12,6 +12,9 @@
 
   .name {
     margin-bottom: 1rem;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   .inactive {

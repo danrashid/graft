@@ -3,6 +3,9 @@ body {
   line-height: 1.375em;
   color: #555; }
 
+.github {
+  text-align: right; }
+
 .col {
   float: left; }
 
@@ -21,6 +24,8 @@ body {
     color: Silver; }
   .graft.bars .name, .graft.bars .period {
     cursor: pointer; }
+  .graft.bars .name:hover {
+    text-decoration: underline; }
   .graft.bars .period {
     background: WhiteSmoke;
     position: relative;
@@ -54,6 +59,8 @@ body {
     border-radius: 50%; }
   .graft.bubbles .name {
     margin-bottom: 1rem; }
+    .graft.bubbles .name:hover {
+      text-decoration: underline; }
   .graft.bubbles .inactive .bubble {
     background: Silver !important; }
   .graft.bubbles .inactive .name {

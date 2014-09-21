@@ -17,7 +17,7 @@ Graft.bubbles = (function() {
         return Math.max(a, b.total);
       }, 0),
       maxDiameter = 0,
-      bubbles = data.map(function (d) {
+      sets = data.map(function (d) {
         var diameter = getDiameter(d.total / maxTotal);
 
         maxDiameter = Math.max(diameter, maxDiameter);
@@ -31,11 +31,11 @@ Graft.bubbles = (function() {
         };
       });
 
-    bubbles.sort(function (a, b) {
+    sets.sort(function (a, b) {
       return b.total - a.total;
     });
 
-    bubbles.forEach(function (d) {
+    sets.forEach(function (d) {
       var width = Math.max(maxWidth * (d.diameter / maxDiameter), minWidth),
         $set = $('<div class="set">');
 
