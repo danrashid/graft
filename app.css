@@ -7,7 +7,9 @@ body {
   text-align: right; }
 
 .col {
-  float: left; }
+  float: left;
+  padding: 1rem;
+  box-sizing: border-box; }
 
 #donut, #bubbles {
   width: 25%; }
@@ -52,19 +54,21 @@ body {
 
 .graft.bubbles {
   text-align: center; }
+  .graft.bubbles .set {
+    margin-bottom: 1rem; }
   .graft.bubbles .bubble, .graft.bubbles .name {
     cursor: pointer; }
   .graft.bubbles .bubble {
     display: inline-block;
     border-radius: 50%; }
-  .graft.bubbles .name {
-    margin-bottom: 1rem; }
-    .graft.bubbles .name:hover {
-      text-decoration: underline; }
+  .graft.bubbles .name:hover {
+    text-decoration: underline; }
   .graft.bubbles .inactive .bubble {
     background: Silver !important; }
   .graft.bubbles .inactive .name {
     color: Gray !important; }
+.graft.tooltip .bubbles {
+  font-weight: bold; }
 
 .graft.donut {
   position: relative;

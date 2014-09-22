@@ -40,16 +40,18 @@ Graft.bubbles = (function() {
         $set = $('<div class="set">');
 
       $('<div class="bubble">')
-        .data({total: d.total})
         .css({
           background: d.color,
           width: Graft.percent(width) + '%'
         })
         .appendTo($set);
 
-      $('<div class="name">')
-        .css('color', d.color)
+      $('<div class="name" style="color:' + d.color + '">')
         .html(d.name)
+        .appendTo($set);
+
+      $('<div class="total">')
+        .html(d.total)
         .appendTo($set);
 
       $set
@@ -59,12 +61,7 @@ Graft.bubbles = (function() {
 
     $bubbles
       .appendTo($el)
-      .on('click', '.name', Graft.toggle)
-      .on('click', '.bubble', function (e) {
-        Graft.tooltip.show(e, '<div class="bubbles">' + $(this).data('total') + '</div>');
-
-        return false;
-      })
+      .on('click', '.bubble, .name', Graft.toggle)
       .find('.bubble')
         .height(function () {
           return $(this).width();

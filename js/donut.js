@@ -77,8 +77,10 @@ Graft.donut = (function() {
 
     $donut
       .data({total: total})
-      .height($el.width())
       .appendTo($el)
+      .height(function () {
+        return $(this).width();
+      })
       .on('click', '.set', Graft.toggle);
 
     setLabel($label, '<div class="all">' + total + '</div>');

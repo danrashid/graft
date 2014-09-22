@@ -1,28 +1,38 @@
-.graft.bubbles {
-  text-align: center;
+.graft {
 
-  .bubble, .name {
-    cursor: pointer;
-  }
+  &.bubbles {
+    text-align: center;
 
-  .bubble {
-    display: inline-block;
-    border-radius: 50%;
-  }
-
-  .name {
-    margin-bottom: 1rem;
-    &:hover {
-      text-decoration: underline;
+    .set {
+      margin-bottom: 1rem;
     }
-  }
 
-  .inactive {
+    .bubble, .name {
+      cursor: pointer;
+    }
+
     .bubble {
-      background: Silver !important;
+      display: inline-block;
+      border-radius: 50%;
     }
+
     .name {
-      color: Gray !important;
+      &:hover {
+        text-decoration: underline;
+      }
     }
+
+    .inactive {
+      .bubble {
+        background: Silver !important;
+      }
+      .name {
+        color: Gray !important;
+      }
+    }
+  }
+
+  &.tooltip .bubbles {
+    font-weight: bold;
   }
 }
