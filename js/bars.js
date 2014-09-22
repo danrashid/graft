@@ -25,7 +25,7 @@ Graft.bars = (function() {
     });
 
     sets.forEach(function (d) {
-      var $set = $('<div class="set clearfix">'),
+      var $set = $('<div class="set">'),
         max = d.values.reduce(function (a, b) {
           return Math.max(a, b[1]);
         }, 0);

@@ -3,17 +3,24 @@ body {
   line-height: 1.375em;
   color: #555;
 }
+
 .github {
   text-align: right;
 }
+
+.row {
+  @include clearfix;
+}
+
 .col {
   float: left;
   padding: 1rem;
   box-sizing: border-box;
+  width: 100%;
 }
-#donut, #bubbles {
-  width: 25%;
-}
-#bars {
-  width: 50%;
+
+@for $i from 1 through 11 {
+  .col-#{$i} {
+    width: percentage($i / 12);
+  }
 }

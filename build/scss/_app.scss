@@ -1,15 +1,8 @@
-@import '_demo';
-
+@import '_mixins';
 @import 'bars';
 @import 'bubbles';
 @import 'donut';
 @import 'stack';
 @import 'tooltips';
 
-/* http://nicolasgallagher.com/micro-clearfix-hack/ */
-
-.clearfix::after {
-  content: ' ';
-  display: table;
-  clear: both;
-}
+@import '_demo';

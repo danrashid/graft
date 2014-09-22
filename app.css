@@ -1,26 +1,12 @@
-body {
-  font-family: 'Helvetica Neue', sans-serif;
-  line-height: 1.375em;
-  color: #555; }
-
-.github {
-  text-align: right; }
-
-.col {
-  float: left;
-  padding: 1rem;
-  box-sizing: border-box; }
-
-#donut, #bubbles {
-  width: 25%; }
-
-#bars {
-  width: 50%; }
-
+/* http://nicolasgallagher.com/micro-clearfix-hack/ */
 .graft.bars {
   position: relative; }
   .graft.bars .set {
     margin-bottom: 1rem; }
+    .graft.bars .set::after {
+      content: ' ';
+      display: table;
+      clear: both; }
   .graft.bars .max {
     position: absolute;
     color: Silver; }
@@ -37,8 +23,12 @@ body {
     border-right: .125em solid White; }
     .graft.bars .period:hover {
       background: Gainsboro; }
+      .graft.bars .period:hover .bar {
+        background: DarkTurquoise; }
     .graft.bars .period.active {
       background: LightCyan; }
+      .graft.bars .period.active .bar {
+        background: Cyan; }
   .graft.bars .bar {
     background: Turquoise;
     position: absolute;
@@ -110,6 +100,31 @@ body {
       width: 100%;
       height: 100%; }
 
+.graft.stack {
+  position: relative; }
+  .graft.stack .set {
+    position: absolute;
+    width: 100%;
+    height: 25em; }
+    .graft.stack .set::after {
+      content: ' ';
+      display: table;
+      clear: both; }
+    .graft.stack .set:first-child .period {
+      background: WhiteSmoke; }
+      .graft.stack .set:first-child .period.hover {
+        background: Gainsboro; }
+  .graft.stack .period {
+    cursor: pointer;
+    position: relative;
+    float: left;
+    height: 100%;
+    box-sizing: border-box;
+    border-right: .125em solid White; }
+  .graft.stack .bar {
+    position: absolute;
+    width: 100%; }
+
 .graft.tooltip {
   border: 1px solid Gainsboro;
   background: White;
@@ -133,8 +148,54 @@ body {
     border-bottom-color: White;
     margin-top: 1px; }
 
-/* http://nicolasgallagher.com/micro-clearfix-hack/ */
-.clearfix::after {
+body {
+  font-family: 'Helvetica Neue', sans-serif;
+  line-height: 1.375em;
+  color: #555; }
+
+.github {
+  text-align: right; }
+
+.row::after {
   content: ' ';
   display: table;
   clear: both; }
+
+.col {
+  float: left;
+  padding: 1rem;
+  box-sizing: border-box;
+  width: 100%; }
+
+.col-1 {
+  width: 8.33333%; }
+
+.col-2 {
+  width: 16.66667%; }
+
+.col-3 {
+  width: 25%; }
+
+.col-4 {
+  width: 33.33333%; }
+
+.col-5 {
+  width: 41.66667%; }
+
+.col-6 {
+  width: 50%; }
+
+.col-7 {
+  width: 58.33333%; }
+
+.col-8 {
+  width: 66.66667%; }
+
+.col-9 {
+  width: 75%; }
+
+.col-10 {
+  width: 83.33333%; }
+
+.col-11 {
+  width: 91.66667%; }

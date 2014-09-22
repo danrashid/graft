@@ -1,0 +1,32 @@
+.graft.stack {
+  position: relative;
+
+  .set {
+    @include clearfix;
+    position: absolute;
+    width: 100%;
+    height: 25em;
+
+    &:first-child .period {
+      background: WhiteSmoke;
+
+      &.hover {
+        background: Gainsboro;
+      }
+    }
+  }
+
+  .period {
+    cursor: pointer;
+    position: relative;
+    float: left;
+    height: 100%;
+    box-sizing: border-box;
+    border-right: .125em solid White;
+  }
+
+  .bar {
+    position: absolute;
+    width: 100%;
+  }
+}

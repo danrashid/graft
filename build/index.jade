@@ -16,16 +16,27 @@ head
   script(type="text/javascript" src="js/stack.js")
   script(type="text/javascript" src="js/stub.js")
 
-body.clearfix
-  .github
-    a(href="https://github.com/danrashid/graft") View on GitHub
-  #donut.col
-  #bars.col
-  #bubbles.col
+body
+  .row
+    .col.col-12.github
+      a(href="https://github.com/danrashid/graft") View on GitHub
+  .row
+    .col.col-3
+      .row
+        .col#donut
+      .row
+        .col#bubbles
+    .col.col-9
+      .row
+        .col#bars
+      .row
+        .col#stack
+
   script(type='text/javascript').
     var data = Graft.stub();
 
     Graft.donut.bind('#donut', data);
+    Graft.bubbles.bind('#bubbles', data, 0.5);
     Graft.bars.bind('#bars', data);
-    Graft.bubbles.bind('#bubbles', data, .33);
+    Graft.stack.bind('#stack', data);
 </html>

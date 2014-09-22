@@ -5,6 +5,7 @@
 
     .set {
       margin-bottom: 1rem;
+      @include clearfix;
     }
 
     .max {
@@ -30,10 +31,18 @@
 
       &:hover {
         background: Gainsboro;
+
+        .bar {
+          background: DarkTurquoise;
+        }
       }
 
       &.active {
         background: LightCyan;
+
+        .bar {
+          background: Cyan;
+        }
       }
     }
 

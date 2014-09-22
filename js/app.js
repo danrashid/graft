@@ -3,18 +3,13 @@
 
 var Graft = {};
 
-Graft.percent = function(x, places) {
-  if (x >= 1) {
-    return 100;
-  }
-
+Graft.percent = function (dec, places) {
   places = places || 1;
 
-  var str = (x+'').substr(2), // Remove leading '0.'
-    front = str.substr(0, 2),
-    back = str.substr(2, places);
+  var floorer = 100 * Math.pow(10, places),
+    floored = Math.floor(dec * floorer) / floorer;
 
-  return +(front + '.' + back);
+  return +((floored * 100).toFixed(places));
 };
 
 Graft.toggle = function() {
