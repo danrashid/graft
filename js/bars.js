@@ -18,25 +18,26 @@ Graft.bars = (function() {
 
       $set.addClass(d.color);
 
-      $('<div class="max">')
-        .html(d.max)
-        .css('right', ts.rightEdge + '%')
-        .appendTo($set);
-
       $('<div class="name">')
         .html(d.name)
         .appendTo($set);
 
       d.values.forEach(function (v) {
-        var $period = $('<div class="period">')
+        var $interval = $('<div class="interval">')
           .data({time: v[0], value: v[1]})
           .css('width', ts.intervalWidth + '%')
           .appendTo($set);
 
         $('<div class="bar">')
           .css('height', Graft.percent(v[1] / d.max) + '%')
-          .appendTo($period);
+          .appendTo($interval);
       });
+
+
+      $('<div class="max">')
+        .html(d.max)
+        .css('right', ts.rightEdge + '%')
+        .appendTo($set);
 
       $set
         .data(d)
@@ -46,13 +47,13 @@ Graft.bars = (function() {
     $graphs
       .appendTo($el)
       .on('click', '.name', Graft.toggle)
-      .on('click', '.period', function (e) {
+      .on('click', '.interval', function (e) {
         var $this = $(this),
           start = new Date($this.data('time')).toLocaleString(),
           end = new Date($this.data('time') + ts.interval).toLocaleString();
 
         $graphs
-          .find('.period')
+          .find('.interval')
             .removeClass('active');
 
         $this.addClass('active');

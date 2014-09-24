@@ -1,23 +1,24 @@
 .graft {
 
   &.bars {
-    position: relative;
 
     .set {
-      margin-bottom: 1rem;
       @include clearfix;
+      position: relative;
+      margin-bottom: 1rem;
     }
 
     .max {
       position: absolute;
       color: Silver;
+      top: 0;
     }
 
     > .max {
       display: none;
     }
 
-    .name, .period {
+    .name, .interval {
       cursor: pointer;
     }
 
@@ -25,7 +26,7 @@
       text-decoration: underline;
     }
 
-    .period {
+    .interval {
       background: WhiteSmoke;
       position: relative;
       float: left;

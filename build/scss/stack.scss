@@ -1,22 +1,35 @@
 .graft.stack {
   position: relative;
+  height: 25em;
+  padding-top: 1.375em;
+  box-sizing: border-box;
 
   .set {
     @include clearfix;
     position: absolute;
     width: 100%;
-    height: 25em;
+    height: 100%;
 
-    &:first-child .period {
+    &:first-child .interval {
       background: WhiteSmoke;
 
       &.hover {
         background: Gainsboro;
       }
     }
+
+    .max {
+      display: none;
+    }
   }
 
-  .period {
+  .max {
+    position: absolute;
+    color: Silver;
+    top: 0;
+  }
+
+  .interval {
     cursor: pointer;
     position: relative;
     float: left;
