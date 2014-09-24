@@ -34,15 +34,21 @@ Graft.donut = (function() {
       $donut = $('<div class="graft donut">'),
       $label = $('<div class="label">'),
       total = data.reduce(function (a, b) {
-        return a + b.total;
+        return a + b.values.reduce(function (c, d) {
+          return c + d[1];
+        }, 0);
       }, 0),
-      sets = data.map(function (d) {
+      sets = data.map(function (d, i) {
+        var localTotal = d.values.reduce(function (a, b) {
+          return a + b[1];
+        }, 0);
+
         return {
-          id: d.id,
+          id: i,
           name: d.name,
           color: d.color,
-          total: d.total,
-          ratio: d.total / total
+          total: localTotal,
+          ratio: localTotal / total
         };
       }),
       start = -spaceDeg;

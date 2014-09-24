@@ -10,6 +10,8 @@
   .graft.bars .max {
     position: absolute;
     color: Silver; }
+  .graft.bars > .max {
+    display: none; }
   .graft.bars .name, .graft.bars .period {
     cursor: pointer; }
   .graft.bars .name:hover {

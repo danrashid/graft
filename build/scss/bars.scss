@@ -13,6 +13,10 @@
       color: Silver;
     }
 
+    > .max {
+      display: none;
+    }
+
     .name, .period {
       cursor: pointer;
     }

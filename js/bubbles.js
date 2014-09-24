@@ -14,22 +14,27 @@ Graft.bubbles = (function() {
     var $el = $(sel),
       $bubbles = $('<div class="graft bubbles">'),
       maxTotal = data.reduce(function (a, b) {
-        return Math.max(a, b.total);
+        return Math.max(a, b.values.reduce(function (c, d) {
+          return c + d[1];
+        }, 0));
       }, 0),
-      maxDiameter = 0,
-      sets = data.map(function (d) {
-        var diameter = getDiameter(d.total / maxTotal);
-
-        maxDiameter = Math.max(diameter, maxDiameter);
+      sets = data.map(function (d, i) {
+        var total = d.values.reduce(function (a, b) {
+            return a + b[1];
+          }, 0),
+          diameter = getDiameter(total / maxTotal);
 
         return {
-          id: d.id,
+          id: i,
           name: d.name,
           color: d.color,
-          total: d.total,
+          total: total,
           diameter: diameter
         };
-      });
+      }),
+      maxDiameter = sets.reduce(function (a, b) {
+        return Math.max(a, b.diameter);
+      }, 0);
 
     sets.sort(function (a, b) {
       return b.total - a.total;

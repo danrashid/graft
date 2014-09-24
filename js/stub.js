@@ -14,9 +14,7 @@ Graft.stub = function () {
     ];
 
   data.forEach(function (d, i) {
-    d.id = i;
     d.values = [];
-    d.total = 0;
 
     var t = start;
 
@@ -24,7 +22,6 @@ Graft.stub = function () {
       var v = Math.round(Math.random() * 100 * (i + 1));
 
       d.values.push([t, v]);
-      d.total += v;
     }
   });
 

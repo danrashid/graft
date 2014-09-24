@@ -6,35 +6,21 @@ Graft.bars = (function() {
   function bind(sel, data) {
     var $el = $(sel),
       $graphs = $('<div class="graft bars">'),
-      sets = data.map(function (d) {
-        return {
-          id: d.id,
-          name: d.name,
-          color: d.color,
-          total: d.total,
-          values: d.values
-        };
-      }),
-      resolution = data[0].values[1][0] - data[0].values[0][0],
-      span = data[0].values[data[0].values.length - 1][0] - data[0].values[0][0],
-      periodWidth = Graft.percent(resolution / span),
-      maxRightPosition = 100 - (periodWidth * data[0].values.length);
+      ts = Graft.timeseries(data);
 
-    sets.sort(function (a, b) {
-      return b.total - a.total;
-    });
+    $('<div class="max">')
+      .html(ts.max)
+      .css('right', ts.rightEdge + '%')
+      .appendTo($graphs);
 
-    sets.forEach(function (d) {
-      var $set = $('<div class="set">'),
-        max = d.values.reduce(function (a, b) {
-          return Math.max(a, b[1]);
-        }, 0);
+    ts.sets.forEach(function (d) {
+      var $set = $('<div class="set">');
 
       $set.addClass(d.color);
 
       $('<div class="max">')
-        .html(max)
-        .css('right', maxRightPosition + '%')
+        .html(d.max)
+        .css('right', ts.rightEdge + '%')
         .appendTo($set);
 
       $('<div class="name">')
@@ -44,11 +30,11 @@ Graft.bars = (function() {
       d.values.forEach(function (v) {
         var $period = $('<div class="period">')
           .data({time: v[0], value: v[1]})
-          .css('width', periodWidth + '%')
+          .css('width', ts.intervalWidth + '%')
           .appendTo($set);
 
         $('<div class="bar">')
-          .css('height', Graft.percent(v[1] / max) + '%')
+          .css('height', Graft.percent(v[1] / d.max) + '%')
           .appendTo($period);
       });
 
@@ -63,7 +49,7 @@ Graft.bars = (function() {
       .on('click', '.period', function (e) {
         var $this = $(this),
           start = new Date($this.data('time')).toLocaleString(),
-          end = new Date($this.data('time') + span).toLocaleString();
+          end = new Date($this.data('time') + ts.interval).toLocaleString();
 
         $graphs
           .find('.period')
