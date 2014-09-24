@@ -16,6 +16,10 @@
       &.hover {
         background: Gainsboro;
       }
+
+      &.active {
+        background: LightCyan;
+      }
     }
 
     .max {
@@ -41,5 +45,9 @@
   .bar {
     position: absolute;
     width: 100%;
+  }
+
+  .inactive .bar {
+    background: Silver !important;
   }
 }

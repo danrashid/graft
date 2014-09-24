@@ -119,6 +119,8 @@
       background: WhiteSmoke; }
       .graft.stack .set:first-child .interval.hover {
         background: Gainsboro; }
+      .graft.stack .set:first-child .interval.active {
+        background: LightCyan; }
     .graft.stack .set .max {
       display: none; }
   .graft.stack .max {
@@ -135,6 +137,8 @@
   .graft.stack .bar {
     position: absolute;
     width: 100%; }
+  .graft.stack .inactive .bar {
+    background: Silver !important; }
 
 .graft.tooltip {
   border: 1px solid Gainsboro;

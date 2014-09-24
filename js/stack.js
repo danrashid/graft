@@ -3,6 +3,18 @@
 
 Graft.stack = (function() {
 
+  function addIntervalClass($interval, className) {
+    removeIntervalClass($interval, className)
+      .eq($interval.index())
+        .addClass(className);
+  }
+
+  function removeIntervalClass($interval, className) {
+    return $interval.closest('.stack')
+      .find('.set:first-child .interval')
+        .removeClass(className);
+  }
+
   function bind(sel, data) {
     var $el = $(sel),
       $stack = $('<div class="graft stack">'),
@@ -18,6 +30,7 @@ Graft.stack = (function() {
         var height = Graft.percent(v[1] / ts.max),
           bottom = tops[j] || 0,
           $interval = $('<div class="interval">')
+            .data({time: v[0], value: v[1]})
             .css('width', ts.intervalWidth + '%')
             .appendTo($set);
 
@@ -44,14 +57,33 @@ Graft.stack = (function() {
     $stack
       .appendTo($el)
       .on('mouseover', '.interval', function() {
-        $stack.find('.set:first-child .interval')
-          .removeClass('hover')
-          .eq($(this).index())
-            .addClass('hover');
+        addIntervalClass($(this), 'hover');
       })
       .on('mouseout', function () {
-        $stack.find('.set:first-child .interval')
-          .removeClass('hover');
+        removeIntervalClass($(this), 'hover');
+      })
+      .on('click', '.interval', function (e) {
+        var $this = $(this),
+          start = new Date($this.data('time')).toLocaleString(),
+          end = new Date($this.data('time') + ts.interval).toLocaleString(),
+          html = [];
+
+        addIntervalClass($this, 'active');
+
+        ts.sets.forEach(function (s) {
+          var value = s.values[$this.index()][1];
+
+          html.unshift('<div class="name ' + s.color + '"><strong>' + value + '</strong> ' + s.name + '</div>');
+        });
+
+        html.push([
+          '<div class="start">' + start + ' –</div>',
+          '<div class="end">' + end + '</div>'
+        ].join(''));
+
+        Graft.tooltip.show(e, html.join(''));
+
+        return false;
       });
   }
 
