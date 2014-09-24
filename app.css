@@ -199,3 +199,29 @@ body {
 
 .col-11 {
   width: 91.66667%; }
+
+.graft.donut .set.blue, .graft.bubbles .set.blue .bubble, .graft.stack .set.blue .bar {
+  background: cornflowerblue; }
+.graft .set.blue .name,
+.graft .name.blue {
+  color: cornflowerblue; }
+.graft.donut .set.red, .graft.bubbles .set.red .bubble, .graft.stack .set.red .bar {
+  background: crimson; }
+.graft .set.red .name,
+.graft .name.red {
+  color: crimson; }
+.graft.donut .set.green, .graft.bubbles .set.green .bubble, .graft.stack .set.green .bar {
+  background: limegreen; }
+.graft .set.green .name,
+.graft .name.green {
+  color: limegreen; }
+.graft.donut .set.orange, .graft.bubbles .set.orange .bubble, .graft.stack .set.orange .bar {
+  background: orange; }
+.graft .set.orange .name,
+.graft .name.orange {
+  color: orange; }
+.graft.donut .set.purple, .graft.bubbles .set.purple .bubble, .graft.stack .set.purple .bar {
+  background: purple; }
+.graft .set.purple .name,
+.graft .name.purple {
+  color: purple; }

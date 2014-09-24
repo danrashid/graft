@@ -24,3 +24,22 @@ body {
     width: percentage($i / 12);
   }
 }
+
+.graft {
+  @each $class, $color in
+  (blue, CornflowerBlue),
+  (red, Crimson),
+  (green, LimeGreen),
+  (orange, Orange),
+  (purple, Purple) {
+    &.donut .set.#{$class},
+    &.bubbles .set.#{$class} .bubble,
+    &.stack .set.#{$class} .bar {
+      background: $color;
+    }
+    .set.#{$class} .name,
+    .name.#{$class} {
+      color: $color;
+    }
+  }
+}

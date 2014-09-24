@@ -36,6 +36,8 @@ Graft.stack = (function() {
     sets.forEach(function (d) {
       var $set = $('<div class="set">');
 
+      $set.addClass(d.color);
+
       d.values.forEach(function (v, j) {
         var height = Graft.percent(v[1] / max),
           bottom = tops[j] || 0,
@@ -45,7 +47,6 @@ Graft.stack = (function() {
 
         $('<div class="bar">')
           .css({
-            background: d.color,
             height: height + '%',
             bottom: bottom + '%'
           })

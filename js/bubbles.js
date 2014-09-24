@@ -39,14 +39,13 @@ Graft.bubbles = (function() {
       var width = Math.max(maxWidth * (d.diameter / maxDiameter), minWidth),
         $set = $('<div class="set">');
 
+      $set.addClass(d.color);
+
       $('<div class="bubble">')
-        .css({
-          background: d.color,
-          width: Graft.percent(width) + '%'
-        })
+        .css('width', Graft.percent(width) + '%')
         .appendTo($set);
 
-      $('<div class="name" style="color:' + d.color + '">')
+      $('<div class="name">')
         .html(d.name)
         .appendTo($set);
 

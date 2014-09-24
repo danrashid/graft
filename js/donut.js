@@ -68,7 +68,7 @@ Graft.donut = (function() {
 
       $('<div class="set">')
         .data(d)
-        .css('background', d.color)
+        .addClass(d.color)
         .css(i < sets.length - 1 ? getTransformRules(start, setDeg) : null)
         .appendTo($donut);
 
@@ -103,7 +103,7 @@ Graft.donut = (function() {
 
       setLabel($label, [
         '<div class="percent">' + percent + '%</div>',
-        '<div class="name" style="color:' + $set.data('color') + '">' + $set.data('name') + '</div>',
+        '<div class="name ' + $set.data('color') + '">' + $set.data('name') + '</div>',
         '<div class="total">' + $set.data('total') + '</div>'
       ].join(''));
     })

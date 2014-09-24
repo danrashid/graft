@@ -30,6 +30,8 @@ Graft.bars = (function() {
           return Math.max(a, b[1]);
         }, 0);
 
+      $set.addClass(d.color);
+
       $('<div class="max">')
         .html(max)
         .css('right', maxRightPosition + '%')
@@ -37,7 +39,6 @@ Graft.bars = (function() {
 
       $('<div class="name">')
         .html(d.name)
-        .css('color', d.color)
         .appendTo($set);
 
       d.values.forEach(function (v) {
