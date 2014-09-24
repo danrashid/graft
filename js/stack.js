@@ -66,22 +66,27 @@ Graft.stack = (function() {
         var $this = $(this),
           start = new Date($this.data('time')).toLocaleString(),
           end = new Date($this.data('time') + ts.interval).toLocaleString(),
-          html = [];
+          total = 0,
+          rows = [];
 
         addIntervalClass($this, 'active');
 
         ts.sets.forEach(function (s) {
           var value = s.values[$this.index()][1];
 
-          html.unshift('<div class="name ' + s.color + '"><strong>' + value + '</strong> ' + s.name + '</div>');
+          rows.unshift('<tr class="name ' + s.color + '"><th>' + value + '</th><td>' + s.name + '</td></tr>');
+          total += value;
         });
 
-        html.push([
+        rows.push('<tr class="total"><th>' + total + '</th><td>Total</td></tr>');
+
+        Graft.tooltip.show(e, [
+          '<table>',
+          rows.join(''),
+          '</table>',
           '<div class="start">' + start + ' –</div>',
           '<div class="end">' + end + '</div>'
         ].join(''));
-
-        Graft.tooltip.show(e, html.join(''));
 
         return false;
       });

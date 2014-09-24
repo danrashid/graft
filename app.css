@@ -145,6 +145,13 @@
   position: absolute;
   z-index: 2;
   margin-top: 1em; }
+  .graft.tooltip th {
+    vertical-align: top;
+    padding-right: .5rem; }
+  .graft.tooltip .total {
+    border-top: 1px solid Gainsboro; }
+    .graft.tooltip .total > * {
+      padding-bottom: 1rem; }
   .graft.tooltip:before, .graft.tooltip:after {
     content: '';
     position: absolute;

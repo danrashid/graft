@@ -7,6 +7,19 @@
   z-index: 2;
   margin-top: 1em;
 
+  th {
+    vertical-align: top;
+    padding-right: .5rem;
+  }
+
+  .total {
+    border-top: 1px solid Gainsboro;
+
+    > * {
+      padding-bottom: 1rem;
+    }
+  }
+
   &:before, &:after {
     content: '';
     position: absolute;
