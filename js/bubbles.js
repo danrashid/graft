@@ -46,12 +46,11 @@ Graft.bubbles = (function() {
 
       $set.addClass(d.color);
 
-      $('<div class="bubble">')
+      $('<a class="bubble" href="#">')
         .css('width', Graft.percent(width) + '%')
         .appendTo($set);
 
-      $('<div class="name">')
-        .html(d.name)
+      $('<div><a class="name" href="#">' + d.name)
         .appendTo($set);
 
       $('<div class="total">')

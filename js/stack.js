@@ -29,7 +29,7 @@ Graft.stack = (function() {
       d.values.forEach(function (v, j) {
         var height = Graft.percent(v[1] / ts.max),
           bottom = tops[j] || 0,
-          $interval = $('<div class="interval">')
+          $interval = $('<a class="interval" href="#">')
             .data({time: v[0], value: v[1]})
             .css('width', ts.intervalWidth + '%')
             .appendTo($set);

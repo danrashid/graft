@@ -18,12 +18,11 @@ Graft.bars = (function() {
 
       $set.addClass(d.color);
 
-      $('<div class="name">')
-        .html(d.name)
+      $('<div><a class="name" href="#">' + d.name)
         .appendTo($set);
 
       d.values.forEach(function (v) {
-        var $interval = $('<div class="interval">')
+        var $interval = $('<a class="interval" href="#">')
           .data({time: v[0], value: v[1]})
           .css('width', ts.intervalWidth + '%')
           .appendTo($set);

@@ -29,6 +29,8 @@ Graft.toggle = function() {
     $sets.removeClass('inactive');
     $(document).trigger('graft:deselect');
   }
+
+  return false;
 };
 
 Graft.timeseries = function (data) {

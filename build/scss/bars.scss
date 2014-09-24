@@ -18,15 +18,12 @@
       display: none;
     }
 
-    .name, .interval {
-      cursor: pointer;
-    }
-
     .name:hover {
       text-decoration: underline;
     }
 
     .interval {
+      display: block;
       background: WhiteSmoke;
       position: relative;
       float: left;

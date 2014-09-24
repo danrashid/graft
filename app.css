@@ -12,11 +12,10 @@
   top: 0; }
 .graft.bars > .max {
   display: none; }
-.graft.bars .name, .graft.bars .interval {
-  cursor: pointer; }
 .graft.bars .name:hover {
   text-decoration: underline; }
 .graft.bars .interval {
+  display: block;
   background: WhiteSmoke;
   position: relative;
   float: left;
@@ -48,8 +47,6 @@
   text-align: center; }
   .graft.bubbles .set {
     margin-bottom: 1rem; }
-  .graft.bubbles .bubble, .graft.bubbles .name {
-    cursor: pointer; }
   .graft.bubbles .bubble {
     display: inline-block;
     border-radius: 50%; }
@@ -95,7 +92,7 @@
   .graft.donut .space {
     background: White; }
   .graft.donut .set {
-    cursor: pointer; }
+    display: block; }
     .graft.donut .set.inactive {
       background: Silver !important; }
     .graft.donut .set:last-child {
@@ -128,7 +125,7 @@
     color: Silver;
     top: 0; }
   .graft.stack .interval {
-    cursor: pointer;
+    display: block;
     position: relative;
     float: left;
     height: 100%;
@@ -240,3 +237,6 @@ body {
 .graft .set.purple .name,
 .graft .name.purple {
   color: purple; }
+
+.graft a {
+  text-decoration: none; }

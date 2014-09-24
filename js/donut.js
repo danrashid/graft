@@ -72,7 +72,7 @@ Graft.donut = (function() {
         start += spaceDeg;
       }
 
-      $('<div class="set">')
+      $('<a class="set" href="#">')
         .data(d)
         .addClass(d.color)
         .css(i < sets.length - 1 ? getTransformRules(start, setDeg) : null)
