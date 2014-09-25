@@ -5,10 +5,6 @@ Graft.timeseries = function (data) {
   var times = data[0].values.map(function (v) {
       return v[0];
     }),
-    duration = times[times.length - 1] - times[0],
-    interval = times[1] - times[0],
-    intervalWidth = Graft.percent(interval / duration),
-    rightEdge = 100 - (intervalWidth * times.length),
     ret = {
       sets: data.map(function (d, i) {
         return {
@@ -24,9 +20,8 @@ Graft.timeseries = function (data) {
           }, 0)
         };
       }),
-      interval: interval,
-      intervalWidth: intervalWidth,
-      rightEdge: rightEdge
+      duration: times[times.length - 1] - times[0],
+      interval: times[1] - times[0]
     };
 
   ret.max = times.map(function (t, i) {

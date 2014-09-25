@@ -37,6 +37,7 @@ body {
     &.stack .set.#{$class} .bar {
       background: $color;
     }
+    .info.#{$class} .name,
     .set.#{$class} .name,
     .name.#{$class} {
       color: $color;

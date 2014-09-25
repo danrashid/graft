@@ -11,7 +11,6 @@ head
   script(type="text/javascript" src="lib/zepto.data.js")
   script(type="text/javascript" src="js/app.js")
   script(type="text/javascript" src="js/timeseries.js")
-  script(type="text/javascript" src="js/graphs.js")
   script(type="text/javascript" src="js/bars.js")
   script(type="text/javascript" src="js/bubbles.js")
   script(type="text/javascript" src="js/donut.js")
@@ -35,11 +34,26 @@ body
       .row
         .col#stack
 
+  table.graft.templates
+    tr.heading
+      th
+        a.toggle(href="#") Toggle
+      th.max
+    tr.info
+      td
+        a.name(href="#")
+      td.max
+    tr.set
+      td(colspan="2")
+        table
+          tr
+
+  script(type="text/javascript" src="js/graphs.js")
   script(type='text/javascript').
     var data = Graft.stub();
 
     Graft.donut.bind('#donut', data);
     Graft.bubbles.bind('#bubbles', data, 0.5);
     Graft.bars.bind('#bars', data, true);
-    Graft.stack.bind('#stack', data);
+    //- Graft.stack.bind('#stack', data);
 </html>

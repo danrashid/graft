@@ -2,16 +2,19 @@
 'use strict';
 
 Graft.stack = (function() {
-  function addIntervalClass($interval, className) {
-    removeIntervalClass($interval, className)
-      .eq($interval.index())
-        .addClass(className);
+  function addIntervalClass($td, className) {
+    var $stack = $td.closest('.stack');
+
+    removeIntervalClass($stack, className);
+
+    $stack.find('.set.first table td')
+      .eq($td.index())
+        .find('.interval')
+          .addClass(className);
   }
 
-  function removeIntervalClass($interval, className) {
-    return $interval.closest('.stack')
-      .find('.set:first-child .interval')
-        .removeClass(className);
+  function removeIntervalClass($stack, className) {
+    $stack.find('.interval').removeClass(className);
   }
 
   function scale($graphs) {
@@ -38,7 +41,7 @@ Graft.stack = (function() {
 
   function bind(sel, data) {
     var ts = Graft.timeseries(data),
-      $graphs = Graft.graphs(ts);
+      $graphs = Graft.graphs.bind(ts);
 
     scale($graphs);
 
@@ -46,7 +49,7 @@ Graft.stack = (function() {
       .addClass('stack')
       .appendTo($(sel))
       .on('mouseover', '.interval', function() {
-        addIntervalClass($(this), 'hover');
+        addIntervalClass($(this).closest('td'), 'hover');
       })
       .on('mouseout', function () {
         removeIntervalClass($(this), 'hover');
@@ -57,8 +60,6 @@ Graft.stack = (function() {
           end = new Date($this.data('time') + ts.interval).toLocaleString(),
           total = 0,
           rows = [];
-
-        addIntervalClass($this, 'active');
 
         ts.sets.forEach(function (s) {
           var value = s.values[$this.index()][1];

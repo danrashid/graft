@@ -1,13 +1,24 @@
 @import '_mixins';
 @import 'bars';
-@import 'barstack';
 @import 'bubbles';
 @import 'donut';
+@import 'graphs';
 @import 'stack';
 @import 'tooltips';
 
 @import '_demo';
 
-.graft a {
-  text-decoration: none;
+.graft {
+
+  a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &.templates {
+    display: none;
+  }
 }

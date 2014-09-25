@@ -1,55 +1,20 @@
 /* http://nicolasgallagher.com/micro-clearfix-hack/ */
-.graft.bars .set {
-  position: relative; }
-.graft.bars > .max {
-  display: none; }
-.graft.bars .name:hover {
-  text-decoration: underline; }
-.graft.bars .intervals {
-  height: 5rem;
-  /* Replace me! */ }
+.graft.bars table {
+  height: 5rem; }
+.graft.bars .heading .max {
+  visibility: hidden; }
 .graft.bars .interval {
   background: WhiteSmoke; }
   .graft.bars .interval:hover {
     background: Gainsboro; }
     .graft.bars .interval:hover .bar {
-      background: DarkTurquoise; }
-  .graft.bars .interval.active .bar {
-    background: Cyan; }
+      background: Teal; }
 .graft.bars .bar {
   background: Turquoise;
   bottom: 0; }
-.graft.bars .inactive .name {
-  color: Gray !important; }
 .graft.tooltip .bars.value {
-  font-weight: bold;
-  color: Turquoise; }
-
-.graft.bars .set, .graft.stack .set {
-  padding-bottom: 1rem; }
-.graft.bars .max, .graft.stack .max {
-  position: absolute;
-  color: Silver;
-  top: 0; }
-.graft.bars .intervals::after, .graft.stack .intervals::after {
-  content: ' ';
-  display: table;
-  clear: both; }
-.graft.bars .interval, .graft.stack .interval {
-  display: block;
-  position: relative;
-  float: left;
-  height: 100%;
-  box-sizing: border-box;
-  border-right: .125em solid White; }
-  .graft.bars .interval.active, .graft.stack .interval.active {
-    background: LightCyan; }
-.graft.bars .bar, .graft.stack .bar {
-  position: absolute;
-  width: 100%;
-  transition: background 1s, height 1s, bottom 1s; }
-.graft.bars .inactive .bar, .graft.stack .inactive .bar {
-  background: Silver !important; }
+  color: Turquoise;
+  font-weight: bold; }
 
 .graft.bubbles {
   text-align: center; }
@@ -107,25 +72,37 @@
       width: 100%;
       height: 100%; }
 
-.graft.stack {
+.graft.bars, .graft.bars table, .graft.stack, .graft.stack table {
+  width: 100%; }
+.graft.bars th, .graft.stack th {
+  font-weight: normal;
+  text-align: left; }
+.graft.bars .max, .graft.stack .max {
+  text-align: right;
+  color: Silver; }
+.graft.bars .info td, .graft.stack .info td {
+  padding-top: 1rem; }
+.graft.bars .interval, .graft.stack .interval {
   position: relative;
-  height: 34.5rem;
-  /* Replace me! */
-  padding-bottom: 2.375em; }
-  .graft.stack .sets, .graft.stack .set, .graft.stack .intervals {
-    height: 100%; }
-  .graft.stack .sets {
-    position: relative; }
-  .graft.stack .set {
+  display: block;
+  height: 100%;
+  width: 67%; }
+.graft.bars .bar, .graft.stack .bar {
+  transition: background 1s, height 1s, bottom 1s;
+  position: absolute;
+  width: 100%; }
+
+.graft.stack {
+  position: relative; }
+  .graft.stack table {
     position: absolute;
-    width: 100%; }
-    .graft.stack .set:first-child .interval {
-      background: WhiteSmoke; }
-      .graft.stack .set:first-child .interval.hover {
-        background: Gainsboro; }
-    .graft.stack .set .name,
-    .graft.stack .set .max {
-      visibility: hidden; }
+    height: 25rem; }
+  .graft.stack .info {
+    display: none; }
+  .graft.stack .set.first .interval {
+    background: WhiteSmoke; }
+    .graft.stack .set.first .interval.hover {
+      background: Gainsboro; }
 
 .graft.tooltip {
   border: 1px solid Gainsboro;
@@ -211,29 +188,38 @@ body {
 
 .graft.donut .set.blue, .graft.bubbles .set.blue .bubble, .graft.stack .set.blue .bar {
   background: cornflowerblue; }
+.graft .info.blue .name,
 .graft .set.blue .name,
 .graft .name.blue {
   color: cornflowerblue; }
 .graft.donut .set.red, .graft.bubbles .set.red .bubble, .graft.stack .set.red .bar {
   background: crimson; }
+.graft .info.red .name,
 .graft .set.red .name,
 .graft .name.red {
   color: crimson; }
 .graft.donut .set.green, .graft.bubbles .set.green .bubble, .graft.stack .set.green .bar {
   background: limegreen; }
+.graft .info.green .name,
 .graft .set.green .name,
 .graft .name.green {
   color: limegreen; }
 .graft.donut .set.orange, .graft.bubbles .set.orange .bubble, .graft.stack .set.orange .bar {
   background: orange; }
+.graft .info.orange .name,
 .graft .set.orange .name,
 .graft .name.orange {
   color: orange; }
 .graft.donut .set.purple, .graft.bubbles .set.purple .bubble, .graft.stack .set.purple .bar {
   background: purple; }
+.graft .info.purple .name,
 .graft .set.purple .name,
 .graft .name.purple {
   color: purple; }
 
 .graft a {
   text-decoration: none; }
+  .graft a:hover {
+    text-decoration: underline; }
+.graft.templates {
+  display: none; }

@@ -2,20 +2,12 @@
 
   &.bars {
 
-    .set {
-      position: relative;
+    table {
+      height: 5rem;
     }
 
-    > .max {
-      display: none;
-    }
-
-    .name:hover {
-      text-decoration: underline;
-    }
-
-    .intervals {
-      height: 5rem; /* Replace me! */
+    .heading .max {
+      visibility: hidden;
     }
 
     .interval {
@@ -25,12 +17,8 @@
         background: Gainsboro;
 
         .bar {
-          background: DarkTurquoise;
+          background: Teal;
         }
-      }
-
-      &.active .bar {
-        background: Cyan;
       }
     }
 
@@ -38,14 +26,10 @@
       background: Turquoise;
       bottom: 0;
     }
-
-    .inactive .name {
-      color: Gray !important;
-    }
   }
 
   &.tooltip .bars.value {
-    font-weight: bold;
     color: Turquoise;
+    font-weight: bold;
   }
 }

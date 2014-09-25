@@ -21,7 +21,7 @@ Graft.bars = (function() {
 
   function bind(sel, data, togglable) {
     var ts = Graft.timeseries(data),
-      $graphs = Graft.graphs(ts, togglable);
+      $graphs = Graft.graphs.bind(ts, togglable);
 
     scale($graphs);
 
@@ -33,9 +33,6 @@ Graft.bars = (function() {
         var $this = $(this),
           start = new Date($this.data('time')).toLocaleString(),
           end = new Date($this.data('time') + ts.interval).toLocaleString();
-
-        $graphs.find('.interval').removeClass('active');
-        $this.addClass('active');
 
         Graft.tooltip.show(e, [
           '<div class="bars value">' + $this.data('value') + '</div>',

@@ -1,32 +1,20 @@
 .graft.stack {
-
   position: relative;
-  height: 34.5rem; /* Replace me! */
-  padding-bottom: 2.375em;
 
-  .sets, .set, .intervals {
-    height: 100%;
-  }
-
-  .sets {
-    position: relative;
-  }
-
-  .set {
+  table {
     position: absolute;
-    width: 100%;
+    height: 25rem;
+  }
 
-    &:first-child .interval {
-      background: WhiteSmoke;
+  .info {
+    display: none;
+  }
 
-      &.hover {
-        background: Gainsboro;
-      }
-    }
+  .set.first .interval {
+    background: WhiteSmoke;
 
-    .name,
-    .max {
-      visibility: hidden;
+    &.hover {
+      background: Gainsboro;
     }
   }
 }
