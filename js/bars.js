@@ -19,9 +19,9 @@ Graft.bars = (function() {
     });
   }
 
-  function bind(sel, data) {
+  function bind(sel, data, togglable) {
     var ts = Graft.timeseries(data),
-      $graphs = Graft.graphs(ts);
+      $graphs = Graft.graphs(ts, togglable);
 
     scale($graphs);
 

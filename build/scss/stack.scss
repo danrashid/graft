@@ -1,13 +1,20 @@
 .graft.stack {
 
   position: relative;
-  height: 25em; /* Replace me! */
+  height: 34.5rem; /* Replace me! */
+  padding-bottom: 2.375em;
+
+  .sets, .set, .intervals {
+    height: 100%;
+  }
+
+  .sets {
+    position: relative;
+  }
 
   .set {
-    @include clearfix;
     position: absolute;
     width: 100%;
-    height: 100%;
 
     &:first-child .interval {
       background: WhiteSmoke;
@@ -21,9 +28,5 @@
     .max {
       visibility: hidden;
     }
-  }
-
-  .interval {
-    height: 100%;
   }
 }

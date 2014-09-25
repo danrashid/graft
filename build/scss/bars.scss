@@ -4,7 +4,6 @@
 
     .set {
       position: relative;
-      margin-bottom: 1rem;
     }
 
     > .max {
@@ -15,9 +14,12 @@
       text-decoration: underline;
     }
 
+    .intervals {
+      height: 5rem; /* Replace me! */
+    }
+
     .interval {
       background: WhiteSmoke;
-      height: 5rem; /* Replace me! */
 
       &:hover {
         background: Gainsboro;

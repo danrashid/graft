@@ -1,15 +1,15 @@
 /* http://nicolasgallagher.com/micro-clearfix-hack/ */
 .graft.bars .set {
-  position: relative;
-  margin-bottom: 1rem; }
+  position: relative; }
 .graft.bars > .max {
   display: none; }
 .graft.bars .name:hover {
   text-decoration: underline; }
-.graft.bars .interval {
-  background: WhiteSmoke;
+.graft.bars .intervals {
   height: 5rem;
   /* Replace me! */ }
+.graft.bars .interval {
+  background: WhiteSmoke; }
   .graft.bars .interval:hover {
     background: Gainsboro; }
     .graft.bars .interval:hover .bar {
@@ -25,25 +25,29 @@
   font-weight: bold;
   color: Turquoise; }
 
-.graft.bars .set::after, .graft.stack .set::after {
-  content: ' ';
-  display: table;
-  clear: both; }
+.graft.bars .set, .graft.stack .set {
+  padding-bottom: 1rem; }
 .graft.bars .max, .graft.stack .max {
   position: absolute;
   color: Silver;
   top: 0; }
+.graft.bars .intervals::after, .graft.stack .intervals::after {
+  content: ' ';
+  display: table;
+  clear: both; }
 .graft.bars .interval, .graft.stack .interval {
   display: block;
   position: relative;
   float: left;
+  height: 100%;
   box-sizing: border-box;
   border-right: .125em solid White; }
   .graft.bars .interval.active, .graft.stack .interval.active {
     background: LightCyan; }
 .graft.bars .bar, .graft.stack .bar {
   position: absolute;
-  width: 100%; }
+  width: 100%;
+  transition: background 1s, height 1s, bottom 1s; }
 .graft.bars .inactive .bar, .graft.stack .inactive .bar {
   background: Silver !important; }
 
@@ -105,16 +109,16 @@
 
 .graft.stack {
   position: relative;
-  height: 25em;
-  /* Replace me! */ }
+  height: 34.5rem;
+  /* Replace me! */
+  padding-bottom: 2.375em; }
+  .graft.stack .sets, .graft.stack .set, .graft.stack .intervals {
+    height: 100%; }
+  .graft.stack .sets {
+    position: relative; }
   .graft.stack .set {
     position: absolute;
-    width: 100%;
-    height: 100%; }
-    .graft.stack .set::after {
-      content: ' ';
-      display: table;
-      clear: both; }
+    width: 100%; }
     .graft.stack .set:first-child .interval {
       background: WhiteSmoke; }
       .graft.stack .set:first-child .interval.hover {
@@ -122,8 +126,6 @@
     .graft.stack .set .name,
     .graft.stack .set .max {
       visibility: hidden; }
-  .graft.stack .interval {
-    height: 100%; }
 
 .graft.tooltip {
   border: 1px solid Gainsboro;

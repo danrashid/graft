@@ -4,7 +4,7 @@
 Graft.stack = (function() {
   function addIntervalClass($interval, className) {
     removeIntervalClass($interval, className)
-      .eq($interval.index() - 1)
+      .eq($interval.index())
         .addClass(className);
   }
 
@@ -61,7 +61,7 @@ Graft.stack = (function() {
         addIntervalClass($this, 'active');
 
         ts.sets.forEach(function (s) {
-          var value = s.values[$this.index() - 1][1];
+          var value = s.values[$this.index()][1];
 
           rows.unshift('<tr class="name ' + s.color + '"><th>' + value + '</th><td>' + s.name + '</td></tr>');
           total += value;

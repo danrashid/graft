@@ -4,7 +4,7 @@
   &.stack {
 
     .set {
-      @include clearfix;
+      padding-bottom: 1rem;
     }
 
     .max {
@@ -13,10 +13,15 @@
       top: 0;
     }
 
+    .intervals {
+      @include clearfix;
+    }
+
     .interval {
       display: block;
       position: relative;
       float: left;
+      height: 100%;
       box-sizing: border-box;
       border-right: .125em solid White;
 
@@ -28,6 +33,7 @@
     .bar {
       position: absolute;
       width: 100%;
+      transition: background 1s, height 1s, bottom 1s;
     }
 
     .inactive .bar {
