@@ -41,5 +41,9 @@ Graft.graphs = function(ts) {
     .css('right', ts.rightEdge + '%')
     .appendTo($graphs);
 
-  return $graphs;
+  return $graphs.data({
+    duration: ts.duration,
+    interval: ts.interval,
+    max: ts.max
+  });
 };

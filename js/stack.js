@@ -2,9 +2,6 @@
 'use strict';
 
 Graft.stack = (function() {
-  var ts,
-    $graphs;
-
   function addIntervalClass($interval, className) {
     removeIntervalClass($interval, className)
       .eq($interval.index() - 1)
@@ -17,8 +14,9 @@ Graft.stack = (function() {
         .removeClass(className);
   }
 
-  function scale() {
-    var tops = [];
+  function scale($graphs) {
+    var max = $graphs.data('max'),
+      tops = [];
 
     $graphs.find('.interval').each(function () {
       var $interval = $(this),
@@ -26,7 +24,7 @@ Graft.stack = (function() {
         value = $interval.data('value');
 
       $interval.find('.bar').each(function () {
-        var height = Graft.percent(value / ts.max),
+        var height = Graft.percent(value / max),
           bottom = tops[time] || 0;
 
         $(this).css({
@@ -39,10 +37,10 @@ Graft.stack = (function() {
   }
 
   function bind(sel, data) {
-    ts = Graft.timeseries(data);
-    $graphs = Graft.graphs(ts);
+    var ts = Graft.timeseries(data),
+      $graphs = Graft.graphs(ts);
 
-    scale();
+    scale($graphs);
 
     $graphs
       .addClass('stack')
@@ -84,6 +82,7 @@ Graft.stack = (function() {
   }
 
   return {
-    bind: bind
+    bind: bind,
+    scale: scale
   };
 })();

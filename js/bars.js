@@ -2,10 +2,7 @@
 'use strict';
 
 Graft.bars = (function() {
-  var ts,
-    $graphs;
-
-  function scale() {
+  function scale($graphs) {
     $graphs.find('.set').each(function () {
       var $set = $(this),
         max = $set.data('max');
@@ -23,10 +20,10 @@ Graft.bars = (function() {
   }
 
   function bind(sel, data) {
-    ts = Graft.timeseries(data);
-    $graphs = Graft.graphs(ts);
+    var ts = Graft.timeseries(data),
+      $graphs = Graft.graphs(ts);
 
-    scale();
+    scale($graphs);
 
     $graphs
       .addClass('bars')
@@ -51,6 +48,7 @@ Graft.bars = (function() {
   }
 
   return {
-    bind: bind
+    bind: bind,
+    scale: scale
   };
 })();
