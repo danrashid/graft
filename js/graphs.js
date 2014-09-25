@@ -16,7 +16,7 @@ Graft.graphs = (function() {
     $headingRow.find('.max').html(ts.max);
 
     ts.sets.forEach(function (d, i) {
-      var $infoRow = $infoTemplate.clone().appendTo($graphs).addClass(d.color),
+      var $infoRow = $infoTemplate.clone().appendTo($graphs).addClass(d.color).data({id: d.id}),
         $setRow = $setTemplate.clone().appendTo($graphs).addClass(i === 0 ? 'first' : null),
         $intervalRow = $setRow.find('tr');
 
@@ -43,25 +43,25 @@ Graft.graphs = (function() {
         .addClass(d.color);
     });
 
-    $graphs
-      .data({
-        duration: ts.duration,
-        interval: ts.interval,
-        max: ts.max
-      })
-      .on('click', '.toggle', function () {
-        $graphs.toggleClass('bars stack');
-
-        if ($graphs.hasClass('bars')) {
-          Graft.bars.scale($graphs);
-        } else {
-          Graft.stack.scale($graphs);
-        }
-        return false;
-      });
-
-    return $graphs;
+    return $graphs.data({
+      duration: ts.duration,
+      interval: ts.interval,
+      max: ts.max
+    });
   }
+
+  $(document).on('click', '.graft .toggle', function () {
+    var $graphs = $(this).closest('.graft');
+
+    $graphs.toggleClass('bars stack');
+
+    if ($graphs.hasClass('bars')) {
+      Graft.bars.scale($graphs);
+    } else {
+      Graft.stack.scale($graphs);
+    }
+    return false;
+  });
 
   return {
     bind: bind

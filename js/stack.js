@@ -3,18 +3,15 @@
 
 Graft.stack = (function() {
   function addIntervalClass($td, className) {
-    var $stack = $td.closest('.stack');
+    var $stack = $td.closest('.stack'),
+      n = $td.index() + 1;
 
     removeIntervalClass($stack, className);
-
-    $stack.find('.set.first table td')
-      .eq($td.index())
-        .find('.interval')
-          .addClass(className);
+    $stack.find('.set.first table td:nth-child(' + n + ') .interval').addClass(className);
   }
 
   function removeIntervalClass($stack, className) {
-    $stack.find('.interval').removeClass(className);
+    $stack.find('.set.first .interval').removeClass(className);
   }
 
   function scale($graphs) {
@@ -47,40 +44,46 @@ Graft.stack = (function() {
 
     $graphs
       .addClass('stack')
-      .appendTo($(sel))
-      .on('mouseover', '.interval', function() {
-        addIntervalClass($(this).closest('td'), 'hover');
-      })
-      .on('mouseout', function () {
-        removeIntervalClass($(this), 'hover');
-      })
-      .on('click', '.interval', function (e) {
-        var $this = $(this),
-          start = new Date($this.data('time')).toLocaleString(),
-          end = new Date($this.data('time') + ts.interval).toLocaleString(),
-          total = 0,
-          rows = [];
-
-        ts.sets.forEach(function (s) {
-          var value = s.values[$this.index()][1];
-
-          rows.unshift('<tr class="name ' + s.color + '"><th>' + value + '</th><td>' + s.name + '</td></tr>');
-          total += value;
-        });
-
-        rows.push('<tr class="total"><th>' + total + '</th><td>Total</td></tr>');
-
-        Graft.tooltip.show(e, [
-          '<table>',
-          rows.join(''),
-          '</table>',
-          '<div class="start">' + start + ' –</div>',
-          '<div class="end">' + end + '</div>'
-        ].join(''));
-
-        return false;
-      });
+      .appendTo($(sel));
   }
+
+  $(document)
+    .on('mouseover', '.graft.stack .interval', function() {
+      addIntervalClass($(this).closest('td'), 'hover');
+    })
+    .on('mouseout', '.graft.stack', function () {
+      removeIntervalClass($(this), 'hover');
+    })
+    .on('click', '.graft.stack .interval', function (e) {
+      var $interval = $(this),
+        $stack = $interval.closest('.stack'),
+        startTicks = $interval.data('time'),
+        start = new Date(startTicks).toLocaleString(),
+        end = new Date(startTicks + $stack.data('interval')).toLocaleString(),
+        total = 0,
+        rows = [];
+
+      $stack.find('.set').each(function () {
+        var $set = $(this),
+          n = $interval.index() + 1,
+          value = $set.find('table td:nth-child(' + n + ') .interval').data('value');
+
+        rows.unshift('<tr class="name ' + $set.data('color') + '"><th>' + value + '</th><td>' + $set.data('name')+ '</td></tr>');
+        total += value;
+      });
+
+      rows.push('<tr class="total"><th>' + total + '</th><td>Total</td></tr>');
+
+      Graft.tooltip.show(e, [
+        '<table>',
+        rows.join(''),
+        '</table>',
+        '<div class="start">' + start + ' –</div>',
+        '<div class="end">' + end + '</div>'
+      ].join(''));
+
+      return false;
+    });
 
   return {
     bind: bind,

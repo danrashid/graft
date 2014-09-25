@@ -86,8 +86,7 @@ Graft.donut = (function() {
       .appendTo($el)
       .height(function () {
         return $(this).width();
-      })
-      .on('click', '.set', Graft.toggle);
+      });
 
     setLabel($label, '<div class="all">' + total + '</div>');
   }
@@ -100,6 +99,7 @@ Graft.donut = (function() {
   });
 
   $(document)
+    .on('click', '.graft.donut .set', Graft.toggle)
     .on('graft:select', function (e, id) {
       var $set = $('.graft.donut .set').filter(function () {
           return $(this).data('id') === id;

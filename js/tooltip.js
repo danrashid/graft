@@ -27,7 +27,11 @@ Graft.tooltip = (function() {
   $(window).on('resize', hide);
 
   $(document).on('click', function (e) {
-    if ($(e.target).closest($el).length === 0) {
+    var $target = $(e.target),
+      clickedInInterval = $target.closest('.interval').length > 0,
+      clickedInTooltip = $target.closest($el).length > 0;
+
+    if (!clickedInInterval && !clickedInTooltip) {
       hide();
     }
   });

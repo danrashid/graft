@@ -29,9 +29,13 @@
     }
 
     .bar {
-      transition: background 1s, height 1s, bottom 1s;
+      transition: background .5s, height .5s, bottom .5s;
       position: absolute;
       width: 100%;
+    }
+
+    .inactive .bar {
+      background: Silver !important;
     }
   }
 }

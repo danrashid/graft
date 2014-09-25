@@ -8,6 +8,7 @@
     }
 
     .bubble {
+      transition: background .5s;
       display: inline-block;
       border-radius: 50%;
     }

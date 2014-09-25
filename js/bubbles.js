@@ -64,7 +64,6 @@ Graft.bubbles = (function() {
 
     $bubbles
       .appendTo($el)
-      .on('click', '.bubble, .name', Graft.toggle)
       .find('.bubble')
         .height(function () {
           return $(this).width();
@@ -76,6 +75,8 @@ Graft.bubbles = (function() {
       return $(this).width();
     });
   });
+
+  $(document).on('click', '.graft.bubbles .bubble, .graft.bubbles .name', Graft.toggle);
 
   return {
     bind: bind

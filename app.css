@@ -21,6 +21,7 @@
   .graft.bubbles .set {
     margin-bottom: 1rem; }
   .graft.bubbles .bubble {
+    transition: background .5s;
     display: inline-block;
     border-radius: 50%; }
   .graft.bubbles .name:hover {
@@ -65,6 +66,7 @@
   .graft.donut .space {
     background: White; }
   .graft.donut .set {
+    transition: background .5s;
     display: block; }
     .graft.donut .set.inactive {
       background: Silver !important; }
@@ -88,9 +90,11 @@
   height: 100%;
   width: 67%; }
 .graft.bars .bar, .graft.stack .bar {
-  transition: background 1s, height 1s, bottom 1s;
+  transition: background .5s, height .5s, bottom .5s;
   position: absolute;
   width: 100%; }
+.graft.bars .inactive .bar, .graft.stack .inactive .bar {
+  background: Silver !important; }
 
 .graft.stack {
   position: relative; }

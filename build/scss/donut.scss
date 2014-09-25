@@ -44,6 +44,7 @@
   }
 
   .set {
+    transition: background .5s;
     display: block;
 
     &.inactive {

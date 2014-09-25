@@ -27,22 +27,26 @@ Graft.bars = (function() {
 
     $graphs
       .addClass('bars')
-      .appendTo($(sel))
-      .on('click', '.name', Graft.toggle)
-      .on('click', '.interval', function (e) {
-        var $this = $(this),
-          start = new Date($this.data('time')).toLocaleString(),
-          end = new Date($this.data('time') + ts.interval).toLocaleString();
-
-        Graft.tooltip.show(e, [
-          '<div class="bars value">' + $this.data('value') + '</div>',
-          '<div class="start">' + start + ' –</div>',
-          '<div class="end">' + end + '</div>'
-        ].join(''));
-
-        return false;
-      });
+      .appendTo($(sel));
   }
+
+  $(document)
+    .on('click', '.graft.bars .name', Graft.toggle)
+    .on('click', '.graft.bars .interval', function (e) {
+      var $interval = $(this),
+        interval = $interval.closest('.bars').data('interval'),
+        startTicks = $interval.data('time'),
+        start = new Date(startTicks).toLocaleString(),
+        end = new Date(startTicks + interval).toLocaleString();
+
+      Graft.tooltip.show(e, [
+        '<div class="bars value">' + $interval.data('value') + '</div>',
+        '<div class="start">' + start + ' –</div>',
+        '<div class="end">' + end + '</div>'
+      ].join(''));
+
+      return false;
+    });
 
   return {
     bind: bind,
