@@ -51,13 +51,17 @@ Graft.graphs = (function() {
   }
 
   $(document).on('click', '.graft .toggle', function () {
-    var $graphs = $(this).closest('.graft');
+    var $graphs = $(this).closest('.graft'),
+      $tables = $graphs.find('table'),
+      height = $graphs.height();
 
     $graphs.toggleClass('bars stack');
 
     if ($graphs.hasClass('bars')) {
+      $tables.css('height', null);
       Graft.bars.scale($graphs);
     } else {
+      $tables.css('height', height);
       Graft.stack.scale($graphs);
     }
     return false;

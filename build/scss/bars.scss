@@ -23,6 +23,7 @@
     }
 
     .bar {
+      transition: background .5s, height .5s, bottom .5s;
       background: Turquoise;
       bottom: 0;
     }

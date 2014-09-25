@@ -56,6 +56,7 @@ Graft.stack = (function() {
     })
     .on('click', '.graft.stack .interval', function (e) {
       var $interval = $(this),
+        $td = $interval.closest('td'),
         $stack = $interval.closest('.stack'),
         startTicks = $interval.data('time'),
         start = new Date(startTicks).toLocaleString(),
@@ -65,7 +66,7 @@ Graft.stack = (function() {
 
       $stack.find('.set').each(function () {
         var $set = $(this),
-          n = $interval.index() + 1,
+          n = $td.index() + 1,
           value = $set.find('table td:nth-child(' + n + ') .interval').data('value');
 
         rows.unshift('<tr class="name ' + $set.data('color') + '"><th>' + value + '</th><td>' + $set.data('name')+ '</td></tr>');

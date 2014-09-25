@@ -10,6 +10,7 @@
     .graft.bars .interval:hover .bar {
       background: Teal; }
 .graft.bars .bar {
+  transition: background .5s, height .5s, bottom .5s;
   background: Turquoise;
   bottom: 0; }
 .graft.tooltip .bars.value {
@@ -90,7 +91,6 @@
   height: 100%;
   width: 67%; }
 .graft.bars .bar, .graft.stack .bar {
-  transition: background .5s, height .5s, bottom .5s;
   position: absolute;
   width: 100%; }
 .graft.bars .inactive .bar, .graft.stack .inactive .bar {
@@ -107,6 +107,8 @@
     background: WhiteSmoke; }
     .graft.stack .set.first .interval.hover {
       background: Gainsboro; }
+  .graft.stack .bar {
+    transition: background 1s, height 1s, bottom 1s; }
 
 .graft.tooltip {
   border: 1px solid Gainsboro;
@@ -117,6 +119,7 @@
   z-index: 2;
   margin-top: 1em; }
   .graft.tooltip th {
+    text-align: left;
     vertical-align: top;
     padding-right: .5rem; }
   .graft.tooltip .total {

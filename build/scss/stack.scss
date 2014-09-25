@@ -17,4 +17,8 @@
       background: Gainsboro;
     }
   }
+
+  .bar {
+    transition: background 1s, height 1s, bottom 1s;
+  }
 }
