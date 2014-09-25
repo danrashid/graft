@@ -2,59 +2,42 @@
 'use strict';
 
 Graft.bars = (function() {
+  var ts,
+    $graphs;
+
+  function scale() {
+    $graphs.find('.set').each(function () {
+      var $set = $(this),
+        max = $set.data('max');
+
+      $set.find('.interval').each(function () {
+        var $interval = $(this),
+          value = $interval.data('value');
+
+        $interval.find('.bar').css({
+          height: Graft.percent(value / max) + '%',
+          bottom: null
+        });
+      });
+    });
+  }
 
   function bind(sel, data) {
-    var $el = $(sel),
-      $graphs = $('<div class="graft bars">'),
-      ts = Graft.timeseries(data);
+    ts = Graft.timeseries(data);
+    $graphs = Graft.graphs(ts);
 
-    $('<div class="max">')
-      .html(ts.max)
-      .css('right', ts.rightEdge + '%')
-      .appendTo($graphs);
-
-    ts.sets.forEach(function (d) {
-      var $set = $('<div class="set">');
-
-      $set.addClass(d.color);
-
-      $('<div><a class="name" href="#">' + d.name)
-        .appendTo($set);
-
-      d.values.forEach(function (v) {
-        var $interval = $('<a class="interval" href="#">')
-          .data({time: v[0], value: v[1]})
-          .css('width', ts.intervalWidth + '%')
-          .appendTo($set);
-
-        $('<div class="bar">')
-          .css('height', Graft.percent(v[1] / d.max) + '%')
-          .appendTo($interval);
-      });
-
-
-      $('<div class="max">')
-        .html(d.max)
-        .css('right', ts.rightEdge + '%')
-        .appendTo($set);
-
-      $set
-        .data(d)
-        .appendTo($graphs);
-    });
+    scale();
 
     $graphs
-      .appendTo($el)
+      .addClass('bars')
+      .appendTo($(sel))
       .on('click', '.name', Graft.toggle)
       .on('click', '.interval', function (e) {
         var $this = $(this),
           start = new Date($this.data('time')).toLocaleString(),
           end = new Date($this.data('time') + ts.interval).toLocaleString();
 
-        $graphs
-          .find('.interval')
-            .removeClass('active');
-
+        $graphs.find('.interval').removeClass('active');
         $this.addClass('active');
 
         Graft.tooltip.show(e, [

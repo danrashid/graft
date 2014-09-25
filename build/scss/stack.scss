@@ -1,8 +1,7 @@
 .graft.stack {
+
   position: relative;
-  height: 25em;
-  padding-top: 1.375em;
-  box-sizing: border-box;
+  height: 25em; /* Replace me! */
 
   .set {
     @include clearfix;
@@ -16,38 +15,15 @@
       &.hover {
         background: Gainsboro;
       }
-
-      &.active {
-        background: LightCyan;
-      }
     }
 
+    .name,
     .max {
-      display: none;
+      visibility: hidden;
     }
-  }
-
-  .max {
-    position: absolute;
-    color: Silver;
-    top: 0;
   }
 
   .interval {
-    display: block;
-    position: relative;
-    float: left;
     height: 100%;
-    box-sizing: border-box;
-    border-right: .125em solid White;
-  }
-
-  .bar {
-    position: absolute;
-    width: 100%;
-  }
-
-  .inactive .bar {
-    background: Silver !important;
   }
 }

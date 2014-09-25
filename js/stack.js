@@ -2,10 +2,12 @@
 'use strict';
 
 Graft.stack = (function() {
+  var ts,
+    $graphs;
 
   function addIntervalClass($interval, className) {
     removeIntervalClass($interval, className)
-      .eq($interval.index())
+      .eq($interval.index() - 1)
         .addClass(className);
   }
 
@@ -15,47 +17,36 @@ Graft.stack = (function() {
         .removeClass(className);
   }
 
-  function bind(sel, data) {
-    var $el = $(sel),
-      $stack = $('<div class="graft stack">'),
-      ts = Graft.timeseries(data),
-      tops = [];
+  function scale() {
+    var tops = [];
 
-    ts.sets.forEach(function (d) {
-      var $set = $('<div class="set">');
+    $graphs.find('.interval').each(function () {
+      var $interval = $(this),
+        time = $interval.data('time'),
+        value = $interval.data('value');
 
-      $set.addClass(d.color);
+      $interval.find('.bar').each(function () {
+        var height = Graft.percent(value / ts.max),
+          bottom = tops[time] || 0;
 
-      d.values.forEach(function (v, j) {
-        var height = Graft.percent(v[1] / ts.max),
-          bottom = tops[j] || 0,
-          $interval = $('<a class="interval" href="#">')
-            .data({time: v[0], value: v[1]})
-            .css('width', ts.intervalWidth + '%')
-            .appendTo($set);
-
-        $('<div class="bar">')
-          .css({
-            height: height + '%',
-            bottom: bottom + '%'
-          })
-          .appendTo($interval);
-
-        tops[j] = height + bottom;
+        $(this).css({
+          height: height + '%',
+          bottom: bottom + '%'
+        });
+        tops[time] = height + bottom;
       });
-
-      $set
-        .data(d)
-        .appendTo($stack);
     });
+  }
 
-    $('<div class="max">')
-      .html(ts.max)
-      .css('right', ts.rightEdge + '%')
-      .appendTo($stack);
+  function bind(sel, data) {
+    ts = Graft.timeseries(data);
+    $graphs = Graft.graphs(ts);
 
-    $stack
-      .appendTo($el)
+    scale();
+
+    $graphs
+      .addClass('stack')
+      .appendTo($(sel))
       .on('mouseover', '.interval', function() {
         addIntervalClass($(this), 'hover');
       })
@@ -72,7 +63,7 @@ Graft.stack = (function() {
         addIntervalClass($this, 'active');
 
         ts.sets.forEach(function (s) {
-          var value = s.values[$this.index()][1];
+          var value = s.values[$this.index() - 1][1];
 
           rows.unshift('<tr class="name ' + s.color + '"><th>' + value + '</th><td>' + s.name + '</td></tr>');
           total += value;

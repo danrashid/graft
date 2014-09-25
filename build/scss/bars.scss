@@ -3,15 +3,8 @@
   &.bars {
 
     .set {
-      @include clearfix;
       position: relative;
       margin-bottom: 1rem;
-    }
-
-    .max {
-      position: absolute;
-      color: Silver;
-      top: 0;
     }
 
     > .max {
@@ -23,13 +16,8 @@
     }
 
     .interval {
-      display: block;
       background: WhiteSmoke;
-      position: relative;
-      float: left;
-      height: 5rem;
-      box-sizing: border-box;
-      border-right: .125em solid White;
+      height: 5rem; /* Replace me! */
 
       &:hover {
         background: Gainsboro;
@@ -39,29 +27,18 @@
         }
       }
 
-      &.active {
-        background: LightCyan;
-
-        .bar {
-          background: Cyan;
-        }
+      &.active .bar {
+        background: Cyan;
       }
     }
 
     .bar {
       background: Turquoise;
-      position: absolute;
       bottom: 0;
-      width: 100%;
     }
 
-    .inactive {
-      .name {
-        color: Gray !important;
-      }
-      .bar {
-        background: Silver;
-      }
+    .inactive .name {
+      color: Gray !important;
     }
   }
 

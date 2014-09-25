@@ -2,46 +2,50 @@
 .graft.bars .set {
   position: relative;
   margin-bottom: 1rem; }
-  .graft.bars .set::after {
-    content: ' ';
-    display: table;
-    clear: both; }
-.graft.bars .max {
-  position: absolute;
-  color: Silver;
-  top: 0; }
 .graft.bars > .max {
   display: none; }
 .graft.bars .name:hover {
   text-decoration: underline; }
 .graft.bars .interval {
-  display: block;
   background: WhiteSmoke;
-  position: relative;
-  float: left;
   height: 5rem;
-  box-sizing: border-box;
-  border-right: .125em solid White; }
+  /* Replace me! */ }
   .graft.bars .interval:hover {
     background: Gainsboro; }
     .graft.bars .interval:hover .bar {
       background: DarkTurquoise; }
-  .graft.bars .interval.active {
-    background: LightCyan; }
-    .graft.bars .interval.active .bar {
-      background: Cyan; }
+  .graft.bars .interval.active .bar {
+    background: Cyan; }
 .graft.bars .bar {
   background: Turquoise;
-  position: absolute;
-  bottom: 0;
-  width: 100%; }
+  bottom: 0; }
 .graft.bars .inactive .name {
   color: Gray !important; }
-.graft.bars .inactive .bar {
-  background: Silver; }
 .graft.tooltip .bars.value {
   font-weight: bold;
   color: Turquoise; }
+
+.graft.bars .set::after, .graft.stack .set::after {
+  content: ' ';
+  display: table;
+  clear: both; }
+.graft.bars .max, .graft.stack .max {
+  position: absolute;
+  color: Silver;
+  top: 0; }
+.graft.bars .interval, .graft.stack .interval {
+  display: block;
+  position: relative;
+  float: left;
+  box-sizing: border-box;
+  border-right: .125em solid White; }
+  .graft.bars .interval.active, .graft.stack .interval.active {
+    background: LightCyan; }
+.graft.bars .bar, .graft.stack .bar {
+  position: absolute;
+  width: 100%; }
+.graft.bars .inactive .bar, .graft.stack .inactive .bar {
+  background: Silver !important; }
 
 .graft.bubbles {
   text-align: center; }
@@ -102,8 +106,7 @@
 .graft.stack {
   position: relative;
   height: 25em;
-  padding-top: 1.375em;
-  box-sizing: border-box; }
+  /* Replace me! */ }
   .graft.stack .set {
     position: absolute;
     width: 100%;
@@ -116,26 +119,11 @@
       background: WhiteSmoke; }
       .graft.stack .set:first-child .interval.hover {
         background: Gainsboro; }
-      .graft.stack .set:first-child .interval.active {
-        background: LightCyan; }
+    .graft.stack .set .name,
     .graft.stack .set .max {
-      display: none; }
-  .graft.stack .max {
-    position: absolute;
-    color: Silver;
-    top: 0; }
+      visibility: hidden; }
   .graft.stack .interval {
-    display: block;
-    position: relative;
-    float: left;
-    height: 100%;
-    box-sizing: border-box;
-    border-right: .125em solid White; }
-  .graft.stack .bar {
-    position: absolute;
-    width: 100%; }
-  .graft.stack .inactive .bar {
-    background: Silver !important; }
+    height: 100%; }
 
 .graft.tooltip {
   border: 1px solid Gainsboro;
