@@ -1,7 +1,9 @@
-/* global Graft, $: false */
+/* global Graft, $: false, Mustache: false */
 'use strict';
 
 Graft.bars = (function() {
+  var tooltipTemplate = Graft.template('tooltip.bars');
+
   function scale($graphs) {
     $graphs.find('.set').each(function () {
       var $set = $(this),
@@ -35,15 +37,13 @@ Graft.bars = (function() {
     .on('click', '.graft.bars .interval', function (e) {
       var $interval = $(this),
         interval = $interval.closest('.bars').data('interval'),
-        startTicks = $interval.data('time'),
-        start = new Date(startTicks).toLocaleString(),
-        end = new Date(startTicks + interval).toLocaleString();
+        startTicks = $interval.data('time');
 
-      Graft.tooltip.show(e, [
-        '<div class="bars value">' + $interval.data('value') + '</div>',
-        '<div class="start">' + start + ' –</div>',
-        '<div class="end">' + end + '</div>'
-      ].join(''));
+      Graft.tooltip.show(e, Mustache.render(tooltipTemplate, {
+        value: $interval.data('value'),
+        start: new Date(startTicks).toLocaleString(),
+        end: new Date(startTicks + interval).toLocaleString()
+      }));
 
       return false;
     });

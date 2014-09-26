@@ -1,7 +1,9 @@
-/* global Graft, $: false */
+/* global Graft, $: false, Mustache: false */
 'use strict';
 
 Graft.stack = (function() {
+  var tooltipTemplate = Graft.template('tooltip.stack');
+
   function addIntervalClass($td, className) {
     var $stack = $td.closest('.stack'),
       n = $td.index() + 1;
@@ -59,29 +61,28 @@ Graft.stack = (function() {
         $td = $interval.closest('td'),
         $stack = $interval.closest('.stack'),
         startTicks = $interval.data('time'),
-        start = new Date(startTicks).toLocaleString(),
-        end = new Date(startTicks + $stack.data('interval')).toLocaleString(),
         total = 0,
-        rows = [];
+        sets = [];
 
       $stack.find('.set').each(function () {
         var $set = $(this),
           n = $td.index() + 1,
           value = $set.find('table td:nth-child(' + n + ') .interval').data('value');
 
-        rows.unshift('<tr class="name ' + $set.data('color') + '"><th>' + value + '</th><td>' + $set.data('name')+ '</td></tr>');
+        sets.unshift({
+          color: $set.data('color'),
+          value: value,
+          name: $set.data('name')
+        });
         total += value;
       });
 
-      rows.push('<tr class="total"><th>' + total + '</th><td>Total</td></tr>');
-
-      Graft.tooltip.show(e, [
-        '<table>',
-        rows.join(''),
-        '</table>',
-        '<div class="start">' + start + ' –</div>',
-        '<div class="end">' + end + '</div>'
-      ].join(''));
+      Graft.tooltip.show(e, Mustache.render(tooltipTemplate, {
+        sets: sets,
+        total: total,
+        start: new Date(startTicks).toLocaleString(),
+        end: new Date(startTicks + $stack.data('interval')).toLocaleString()
+      }));
 
       return false;
     });
