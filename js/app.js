@@ -32,3 +32,17 @@ Graft.toggle = function() {
 
   return false;
 };
+
+Graft.template = function (name) {
+  var template;
+
+  $.ajax({
+    url: 'templates/' + name + '.html',
+    async: false,
+    success: function (res) {
+      template = res;
+    }
+  });
+
+  return template;
+};

@@ -1,0 +1,22 @@
+table.graft
+  tr.heading
+    th
+      {{#togglable}}
+      a.toggle(href="#") Toggle
+      {{/togglable}}
+    th.max {{max}}
+  {{#sets}}
+  tr.info(class="{{color}}")
+    td
+      a.name(href="#") {{name}}
+    td.max {{max}}
+  tr.set(class="{{color}}")
+    td(colspan="2")
+      table
+        tr
+          {{#values}}
+          td
+            a.interval(href="#")
+              .bar &nbsp;
+          {{/values}}
+  {{/sets}}

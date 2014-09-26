@@ -1,53 +1,45 @@
-/* global Graft, $: false */
+/* global Graft, $: false, Mustache: false */
 'use strict';
 
 Graft.graphs = (function() {
-  var $headingTemplate = $('.graft.templates .heading'),
-    $infoTemplate = $('.graft.templates .info'),
-    $setTemplate = $('.graft.templates .set');
+  var template = Graft.template('graphs');
 
   function bind(ts, togglable) {
-    var $graphs = $('<table class="graft">'),
-      $headingRow = $headingTemplate.clone().appendTo($graphs);
+    var html = Mustache.render(template, $.extend(ts, {
+        togglable: togglable
+      })),
+      $graphs = $(html);
 
-    if (!togglable) {
-      $headingRow.find('.toggle').hide();
-    }
-    $headingRow.find('.max').html(ts.max);
-
-    ts.sets.forEach(function (d, i) {
-      var $infoRow = $infoTemplate.clone().appendTo($graphs).addClass(d.color).data({id: d.id}),
-        $setRow = $setTemplate.clone().appendTo($graphs).addClass(i === 0 ? 'first' : null),
-        $intervalRow = $setRow.find('tr');
-
-      $infoRow.find('.name').html(d.name);
-      $infoRow.find('.max').html(d.max);
-
-      d.values.forEach(function (v) {
-        var $cell = $('<td>').appendTo($intervalRow);
-
-        $('<a class="interval" href="#">')
-          .data({time: v[0], value: v[1]})
-          .appendTo($cell)
-          .append('<div class="bar">&nbsp;');
-      });
-
-      $setRow
-        .data({
-          id: d.id,
-          name: d.name,
-          color: d.color,
-          total: d.total,
-          max: d.max
-        })
-        .addClass(d.color);
+    $graphs.find('.info').each(function (i) {
+      $(this).data({id: ts.sets[i].id});
     });
 
-    return $graphs.data({
+    $graphs.find('.set').each(function (i) {
+      var set = ts.sets[i];
+
+      $(this)
+        .addClass(i === 0 ? 'first' : null)
+        .data({
+          id: set.id,
+          name: set.name,
+          color: set.color,
+          total: set.total,
+          max: set.max
+        })
+        .find('.interval').each(function (i) {
+          var v = set.values[i];
+
+          $(this).data({time: v[0], value: v[1]});
+        });
+    });
+
+    $graphs.data({
       duration: ts.duration,
       interval: ts.interval,
       max: ts.max
     });
+
+    return $graphs;
   }
 
   $(document).on('click', '.graft .toggle', function () {

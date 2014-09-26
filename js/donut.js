@@ -1,7 +1,10 @@
-/* global Graft, $: false */
+/* global Graft, $: false, Mustache: false */
 'use strict';
 
 Graft.donut = (function() {
+  var template = Graft.template('donut'),
+    allLabelTemplate = $(template).find('.label').html(),
+    oneLabelTemplate = Graft.template('donut.label');
 
   function getSkewY(deg) {
     return Math.min(deg - 90, 89);
@@ -18,22 +21,21 @@ Graft.donut = (function() {
     };
   }
 
-  function positionLabel($el) {
-    $el.css('margin-top', -$el.height() / 2);
+  function positionLabel($label) {
+    $label.css('margin-top', -$label.height() / 2);
   }
 
-  function setLabel($el, html) {
-    $el.html(html);
-    positionLabel($el);
+  function setLabel($donut, html) {
+    var $label = $donut.find('.label');
+
+    $label.html(html);
+    positionLabel($label);
   }
 
   function bind(sel, data, spaceDeg) {
     spaceDeg = spaceDeg || 5;
 
-    var $el = $(sel),
-      $donut = $('<div class="graft donut">'),
-      $label = $('<div class="label">'),
-      total = data.reduce(function (a, b) {
+    var total = data.reduce(function (a, b) {
         return a + b.values.reduce(function (c, d) {
           return c + d[1];
         }, 0);
@@ -51,51 +53,60 @@ Graft.donut = (function() {
           ratio: localTotal / total
         };
       }),
-      start = -spaceDeg;
-
-    $('<div class="hole">')
-      .appendTo($donut)
-      .append($label);
+      start = -spaceDeg,
+      $donut,
+      $sets;
 
     sets.sort(function (a, b) {
       return a.total - b.total;
     });
 
-    sets.forEach(function (d, i) {
-      var setDeg = Math.floor(360 * d.ratio) - spaceDeg;
+    $donut = $(Mustache.render(template, {
+      total: total,
+      sets: sets
+    }));
 
-      if (sets.length > 1) {
-        $('<div class="space">')
-          .css(getTransformRules(start, spaceDeg))
-          .appendTo($donut);
+    $sets = $donut.find('.set');
+
+    if ($sets.length > 0) {
+      $sets.each(function (i) {
+        var $set = $(this),
+          set = sets[i],
+          setDeg = Math.floor(360 * set.ratio) - spaceDeg;
+
+        $set.prev('.space').css(getTransformRules(start, spaceDeg));
 
         start += spaceDeg;
-      }
 
-      $('<a class="set" href="#">')
-        .data(d)
-        .addClass(d.color)
-        .css(i < sets.length - 1 ? getTransformRules(start, setDeg) : null)
-        .appendTo($donut);
+        $set
+          .data(set)
+          .css(i < sets.length - 1 ? getTransformRules(start, setDeg) : null);
 
-      start += setDeg;
-    });
+        start += setDeg;
+      });
+    } else {
+      $donut.remove('.space');
+    }
 
     $donut
       .data({total: total})
-      .appendTo($el)
+      .appendTo($(sel))
       .height(function () {
         return $(this).width();
       });
 
-    setLabel($label, '<div class="all">' + total + '</div>');
+    setLabel($donut, Mustache.render(allLabelTemplate, {
+      total: total
+    }));
   }
 
   $(window).on('resize', function () {
-    $('.graft.donut').height(function () {
-      return $(this).width();
+    $('.graft.donut').each(function () {
+      var $donut = $(this);
+
+      $donut.height($donut.width());
+      positionLabel($donut.find('.label'));
     });
-    positionLabel($('.graft.donut .label'));
   });
 
   $(document)
@@ -104,21 +115,22 @@ Graft.donut = (function() {
       var $set = $('.graft.donut .set').filter(function () {
           return $(this).data('id') === id;
         }),
-        $label = $set.closest('.donut').find('.label'),
-        percent = Graft.percent($set.data('ratio'), 2);
+        $donut = $set.closest('.donut');
 
-      setLabel($label, [
-        '<div class="percent">' + percent + '%</div>',
-        '<div class="name ' + $set.data('color') + '">' + $set.data('name') + '</div>',
-        '<div class="total">' + $set.data('total') + '</div>'
-      ].join(''));
+      setLabel($donut, Mustache.render(oneLabelTemplate, {
+        percent: Graft.percent($set.data('ratio'), 2),
+        color: $set.data('color'),
+        name: $set.data('name'),
+        total: $set.data('total')
+      }));
     })
     .on('graft:deselect', function () {
       $('.graft.donut').each(function () {
-        var $donut = $(this),
-          $label = $donut.find('.label');
+        var $donut = $(this);
 
-        setLabel($label, '<div class="all">' + $donut.data('total') + '</div>');
+        setLabel($donut, Mustache.render(allLabelTemplate, {
+          total: $donut.data('total')
+        }));
       });
     });
 

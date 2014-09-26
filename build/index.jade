@@ -7,6 +7,7 @@ head
   title graft
   link(rel="stylesheet" type="text/css" href="lib/normalize.css")
   link(rel="stylesheet" type="text/css" href="app.css")
+  script(type="text/javascript" src="lib/mustache.js")
   script(type="text/javascript" src="lib/zepto.min.js")
   script(type="text/javascript" src="lib/zepto.data.js")
   script(type="text/javascript" src="js/app.js")
@@ -33,20 +34,6 @@ body
         .col#bars
       .row
         .col#stack
-
-  table.graft.templates
-    tr.heading
-      th
-        a.toggle(href="#") Toggle
-      th.max
-    tr.info
-      td
-        a.name(href="#")
-      td.max
-    tr.set
-      td(colspan="2")
-        table
-          tr
 
   script(type="text/javascript" src="js/graphs.js")
   script(type='text/javascript').
