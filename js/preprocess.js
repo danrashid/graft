@@ -40,9 +40,18 @@ Graft.preprocess = function (data) {
         percent: Graft.percent(ratio),
         max: d.values.reduce(function (a, b) {
           return Math.max(a, b[1]);
-        }, 0)
+        }, 0),
+        sqrt: Math.sqrt(setTotal)
       };
-    });
+    }),
+
+    maxSetTotal = sets.reduce(function (a, b) {
+      return Math.max(a, b.total);
+    }, 0),
+
+    maxSqrt = sets.reduce(function (a, b) {
+      return Math.max(a, b.sqrt);
+    }, 0);
 
   return {
     total: total,
@@ -50,5 +59,7 @@ Graft.preprocess = function (data) {
     duration: duration,
     interval: interval,
     sets: sets,
+    maxSetTotal: maxSetTotal,
+    maxSqrt: maxSqrt
   };
 };

@@ -4,55 +4,19 @@
 Graft.bubbles = (function() {
   var template = Graft.template('bubbles');
 
-  function getDiameter(area) {
-    return 2 * Math.sqrt(area / Math.PI);
-  }
-
-  function bind(sel, data, maxWidth, minWidth) {
+  function bind(sel, maxWidth, minWidth) {
     maxWidth = maxWidth || 1;
     minWidth = minWidth || 0.01;
 
-    var maxTotal = data.reduce(function (a, b) {
-        return Math.max(a, b.values.reduce(function (c, d) {
-          return c + d[1];
-        }, 0));
-      }, 0),
-      sets = data.map(function (d, i) {
-        var total = d.values.reduce(function (a, b) {
-            return a + b[1];
-          }, 0),
-          diameter = getDiameter(total / maxTotal);
-
-        return {
-          id: i,
-          name: d.name,
-          color: d.color,
-          total: total,
-          diameter: diameter
-        };
-      }),
-      maxDiameter = sets.reduce(function (a, b) {
-        return Math.max(a, b.diameter);
-      }, 0),
-      $bubbles;
-
-    sets
+    Graft.data.sets
       .sort(function (a, b) {
         return b.total - a.total;
       })
-      .forEach(function (d) {
-        d.width = Graft.percent(Math.max(maxWidth * (d.diameter / maxDiameter), minWidth));
+      .forEach(function (s) {
+        s.width = Graft.percent(Math.max(maxWidth * (s.sqrt / Graft.data.maxSqrt), minWidth));
       });
 
-    $bubbles = $(Mustache.render(template, {
-      sets: sets
-    }));
-
-    $bubbles.find('.set').each(function (i) {
-      $(this).data(sets[i]);
-    });
-
-    $bubbles
+    $(Mustache.render(template, Graft.data))
       .appendTo($(sel))
       .find('.bubble')
         .height(function () {
