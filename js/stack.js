@@ -9,7 +9,7 @@ Graft.stack = (function() {
       n = $td.index() + 1;
 
     removeIntervalClass($stack, className);
-    $stack.find('.set.first table td:nth-child(' + n + ') .interval').addClass(className);
+    $stack.find('.set.first .interval:nth-child(' + n + ')').addClass(className);
   }
 
   function removeIntervalClass($stack, className) {
@@ -51,14 +51,13 @@ Graft.stack = (function() {
 
   $(document)
     .on('mouseover', '.graft.stack .interval', function() {
-      addIntervalClass($(this).closest('td'), 'hover');
+      addIntervalClass($(this), 'hover');
     })
     .on('mouseout', '.graft.stack', function () {
       removeIntervalClass($(this), 'hover');
     })
     .on('click', '.graft.stack .interval', function (e) {
       var $interval = $(this),
-        $td = $interval.closest('td'),
         $stack = $interval.closest('.stack'),
         startTicks = $interval.data('time'),
         total = 0,
@@ -66,8 +65,8 @@ Graft.stack = (function() {
 
       $stack.find('.set').each(function () {
         var $set = $(this),
-          n = $td.index() + 1,
-          value = $set.find('table td:nth-child(' + n + ') .interval').data('value');
+          n = $interval.index() + 1,
+          value = $set.find('table .interval:nth-child(' + n + ')').data('value');
 
         sets.unshift({
           color: $set.data('color'),

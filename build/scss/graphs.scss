@@ -21,11 +21,13 @@
       padding-top: 1rem;
     }
 
+    table, .interval {
+      border: .25em solid White;
+    }
+
     .interval {
+      cursor: pointer;
       position: relative;
-      display: block;
-      height: 100%;
-      width: 67%;
     }
 
     .bar {
