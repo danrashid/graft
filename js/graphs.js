@@ -4,40 +4,20 @@
 Graft.graphs = (function() {
   var template = Graft.template('graphs');
 
-  function bind(ts, togglable) {
-    var html = Mustache.render(template, $.extend(ts, {
-        togglable: togglable
-      })),
-      $graphs = $(html);
-
-    $graphs.find('.info').each(function (i) {
-      $(this).data({id: ts.sets[i].id});
+  function bind(togglable) {
+    Graft.data.sets.sort(function (a, b) {
+      return b.total - a.total;
     });
 
-    $graphs.find('.set').each(function (i) {
-      var set = ts.sets[i];
+    var $graphs = $(Mustache.render(template, Graft.data));
 
-      $(this)
-        .addClass(i === 0 ? 'first' : null)
-        .data({
-          id: set.id,
-          name: set.name,
-          color: set.color,
-          total: set.total,
-          max: set.max
-        })
-        .find('.interval').each(function (i) {
-          var v = set.values[i];
+    if (!togglable) {
+      $graphs.find('.toggle').hide();
+    }
 
-          $(this).data({time: v[0], value: v[1]});
-        });
-    });
-
-    $graphs.data({
-      duration: ts.duration,
-      interval: ts.interval,
-      max: ts.max
-    });
+    $graphs.find('.set')
+      .first()
+        .addClass('first');
 
     return $graphs;
   }

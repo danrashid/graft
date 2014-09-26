@@ -78,11 +78,10 @@ Graft.donut = (function() {
   $(document)
     .on('click', '.graft.donut .set', Graft.toggle)
     .on('graft:select', function (e, id) {
-      var $set = $('.graft.donut .set').filter(function () {
+      var $donut = $('.graft.donut .set').filter(function () {
           return $(this).data('id') === id;
-        }),
-        $donut = $set.closest('.donut'),
-        set = Graft.find(Graft.data.sets, 'id', +id);
+        }).closest('.donut'),
+        set = Graft.lookup(id);
 
       setLabel($donut, Mustache.render(oneLabelTemplate, set));
     })

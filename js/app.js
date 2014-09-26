@@ -47,12 +47,14 @@ Graft.template = function (name) {
   return template;
 };
 
-Graft.find = function (arr, prop, val) {
+Graft.lookup = function (setId) {
+  setId = +setId;
+
   var ret;
 
-  arr.some(function (d) {
-    if (d[prop] === val) {
-      ret = d;
+  Graft.data.sets.some(function (s) {
+    if (s.id === setId) {
+      ret = s;
       return true;
     }
     return false;

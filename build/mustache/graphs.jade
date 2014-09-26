@@ -1,16 +1,14 @@
 table.graft
   tr.heading
     th
-      {{#togglable}}
       a.toggle(href="#") Toggle
-      {{/togglable}}
     th.max {{max}}
   {{#sets}}
-  tr.info(class="{{color}}")
+  tr.info(class="{{color}}" data-id="{{id}}")
     td
       a.name(href="#") {{name}}
     td.max {{max}}
-  tr.set(class="{{color}}")
+  tr.set(class="{{color}}" data-id="{{id}}")
     td(colspan="2")
       table
         tr

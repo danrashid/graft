@@ -7,23 +7,19 @@ Graft.bars = (function() {
   function scale($graphs) {
     $graphs.find('.set').each(function () {
       var $set = $(this),
-        max = $set.data('max');
+        set = Graft.lookup($set.data('id'));
 
-      $set.find('.interval').each(function () {
-        var $interval = $(this),
-          value = $interval.data('value');
-
-        $interval.find('.bar').css({
-          height: Graft.percent(value / max) + '%',
+      $set.find('.bar').each(function (i) {
+        $(this).css({
+          height: Graft.percent(set.values[i][1] / set.max) + '%',
           bottom: null
         });
       });
     });
   }
 
-  function bind(sel, data, togglable) {
-    var ts = Graft.timeseries(data),
-      $graphs = Graft.graphs.bind(ts, togglable);
+  function bind(sel, togglable) {
+    var $graphs = Graft.graphs.bind(togglable);
 
     scale($graphs);
 
@@ -36,13 +32,13 @@ Graft.bars = (function() {
     .on('click', '.graft.bars .name', Graft.toggle)
     .on('click', '.graft.bars .interval', function (e) {
       var $interval = $(this),
-        interval = $interval.closest('.bars').data('interval'),
-        startTicks = $interval.data('time');
+        set = Graft.lookup($interval.closest('.set').data('id')),
+        interval = set.values[$interval.index()];
 
       Graft.tooltip.show(e, Mustache.render(tooltipTemplate, {
-        value: $interval.data('value'),
-        start: new Date(startTicks).toLocaleString(),
-        end: new Date(startTicks + interval).toLocaleString()
+        value: interval[1],
+        start: new Date(interval[0]).toLocaleString(),
+        end: new Date(interval[0] + Graft.data.interval).toLocaleString()
       }));
 
       return false;
