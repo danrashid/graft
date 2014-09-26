@@ -46,3 +46,16 @@ Graft.template = function (name) {
 
   return template;
 };
+
+Graft.find = function (arr, prop, val) {
+  var ret;
+
+  arr.some(function (d) {
+    if (d[prop] === val) {
+      ret = d;
+      return true;
+    }
+    return false;
+  });
+  return ret;
+};

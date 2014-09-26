@@ -11,7 +11,7 @@ head
   script(type="text/javascript" src="lib/zepto.min.js")
   script(type="text/javascript" src="lib/zepto.data.js")
   script(type="text/javascript" src="js/app.js")
-  script(type="text/javascript" src="js/timeseries.js")
+  script(type="text/javascript" src="js/preprocess.js")
   script(type="text/javascript" src="js/bars.js")
   script(type="text/javascript" src="js/bubbles.js")
   script(type="text/javascript" src="js/donut.js")
@@ -37,10 +37,9 @@ body
 
   script(type="text/javascript" src="js/graphs.js")
   script(type='text/javascript').
-    var data = Graft.stub();
-
-    Graft.donut.bind('#donut', data);
-    Graft.bubbles.bind('#bubbles', data, 0.5);
-    Graft.bars.bind('#bars', data, true);
+    Graft.data = Graft.preprocess(Graft.stub());
+    Graft.donut.bind('#donut');
+    //- Graft.bubbles.bind('#bubbles', data, 0.5);
+    //- Graft.bars.bind('#bars', data, true);
     //- Graft.stack.bind('#stack', data);
 </html>
