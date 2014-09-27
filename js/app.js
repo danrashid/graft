@@ -13,6 +13,10 @@ Graft.percent = function (dec, places) {
 };
 
 Graft.toggle = function() {
+  if (Graft.data.sets.length < 2) {
+    return false;
+  }
+
   var id = $(this).closest('.set').data('id'),
     $set = $('.graft .set').filter(function () {
       return $(this).data('id') === id;

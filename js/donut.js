@@ -56,7 +56,7 @@ Graft.donut = (function() {
         start += setDeg;
       });
     } else {
-      $donut.remove('.space');
+      $donut.find('.space').remove();
     }
 
     $donut
