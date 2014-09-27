@@ -1,13 +1,13 @@
 .graft
   .max {{max}}
   a.toggle(href="#") Toggle
-  {{#sets}}
+  | {{#sets}}
   .set(class="{{color}}" data-id="{{id}}")
     .max {{max}}
     a.name(href="#") {{name}}
     .intervals
-      {{#values}}
+      | {{#values}}
       a.interval(style="width:{{barWidth}}%")
         .bar
-      {{/values}}
-  {{/sets}}
+      | {{/values}}
+  | {{/sets}}
