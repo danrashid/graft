@@ -4,9 +4,9 @@
 Graft.stack = (function() {
   var tooltipTemplate = Graft.template('tooltip.stack');
 
-  function addIntervalClass($td, className) {
-    var $stack = $td.closest('.stack'),
-      n = $td.index() + 1;
+  function addIntervalClass($interval, className) {
+    var $stack = $interval.closest('.stack'),
+      n = $interval.index() + 1;
 
     removeIntervalClass($stack, className);
     $stack.find('.set.first .interval:nth-child(' + n + ')').addClass(className);

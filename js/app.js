@@ -13,12 +13,12 @@ Graft.percent = function (dec, places) {
 };
 
 Graft.toggle = function() {
-  var id = $(this).closest('.info, .set').data('id'),
-    $set = $('.graft .info, .graft .set').filter(function () {
+  var id = $(this).closest('.set').data('id'),
+    $set = $('.graft .set').filter(function () {
       return $(this).data('id') === id;
     }),
     $sets = $set.map(function () {
-      return $(this).closest('.graft').find('.info, .set');
+      return $(this).closest('.graft').find('.set');
     });
 
   if ($set.hasClass('inactive') || !$set.siblings('.inactive').length) {

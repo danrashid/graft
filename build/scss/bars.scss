@@ -2,15 +2,12 @@
 
   &.bars {
 
-    table {
-      height: 5rem;
-    }
-
-    .heading .max {
-      visibility: hidden;
+    > .max {
+      display: none;
     }
 
     .interval {
+      height: 5rem;
       background: WhiteSmoke;
 
       &:hover {
@@ -23,7 +20,6 @@
     }
 
     .bar {
-      transition: background .5s, height .5s, bottom .5s;
       background: Turquoise;
       bottom: 0;
     }

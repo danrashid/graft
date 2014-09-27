@@ -1,24 +1,26 @@
 .graft.stack {
   position: relative;
 
-  table {
+  .set {
     position: absolute;
+    width: 100%;
     height: 25rem;
-  }
+    margin-top: 1.375em;
 
-  .info {
-    display: none;
-  }
+    &.first .interval {
+      background: WhiteSmoke;
 
-  .set.first .interval {
-    background: WhiteSmoke;
+      &.hover {
+        background: Gainsboro;
+      }
+    }
 
-    &.hover {
-      background: Gainsboro;
+    .name, .max {
+      display: none;
     }
   }
 
-  .bar {
-    transition: background 1s, height 1s, bottom 1s;
+  .intervals, .interval {
+    height: 100%;
   }
 }

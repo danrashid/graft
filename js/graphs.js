@@ -9,7 +9,9 @@ Graft.graphs = (function() {
       return b.total - a.total;
     });
 
-    var $graphs = $(Mustache.render(template, Graft.data));
+    var $graphs = $(Mustache.render(template, $.extend(Graft.data, {
+      barWidth: Graft.percent(1 / Graft.data.sets[0].values.length, 2)
+    })));
 
     if (!togglable) {
       $graphs.find('.toggle').hide();

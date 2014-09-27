@@ -1,19 +1,13 @@
-table.graft
-  tr.heading
-    th
-      a.toggle(href="#") Toggle
-    th.max {{max}}
+.graft
+  .max {{max}}
+  a.toggle(href="#") Toggle
   {{#sets}}
-  tr.info(class="{{color}}" data-id="{{id}}")
-    td
-      a.name(href="#") {{name}}
-    td.max {{max}}
-  tr.set(class="{{color}}" data-id="{{id}}")
-    td(colspan="2")
-      table
-        tr
-          {{#values}}
-          td.interval
-            .bar &nbsp;
-          {{/values}}
+  .set(class="{{color}}" data-id="{{id}}")
+    .max {{max}}
+    a.name(href="#") {{name}}
+    .intervals
+      {{#values}}
+      a.interval(style="width:{{barWidth}}%")
+        .bar
+      {{/values}}
   {{/sets}}

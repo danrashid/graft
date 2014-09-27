@@ -1,16 +1,14 @@
 /* http://nicolasgallagher.com/micro-clearfix-hack/ */
-.graft.bars table {
-  height: 5rem; }
-.graft.bars .heading .max {
-  visibility: hidden; }
+.graft.bars > .max {
+  display: none; }
 .graft.bars .interval {
+  height: 5rem;
   background: WhiteSmoke; }
   .graft.bars .interval:hover {
     background: Gainsboro; }
     .graft.bars .interval:hover .bar {
       background: Teal; }
 .graft.bars .bar {
-  transition: background .5s, height .5s, bottom .5s;
   background: Turquoise;
   bottom: 0; }
 .graft.tooltip .bars.value {
@@ -75,22 +73,26 @@
       width: 100%;
       height: 100%; }
 
-.graft.bars, .graft.bars table, .graft.stack, .graft.stack table {
-  width: 100%; }
-.graft.bars th, .graft.stack th {
-  font-weight: normal;
-  text-align: left; }
 .graft.bars .max, .graft.stack .max {
-  text-align: right;
+  float: right;
   color: Silver; }
-.graft.bars .info td, .graft.stack .info td {
-  padding-top: 1rem; }
-.graft.bars table, .graft.bars .interval, .graft.stack table, .graft.stack .interval {
-  border: .25em solid White; }
+.graft.bars .set, .graft.stack .set {
+  margin-bottom: 1rem; }
+.graft.bars .intervals::after, .graft.stack .intervals::after {
+  content: ' ';
+  display: table;
+  clear: both; }
 .graft.bars .interval, .graft.stack .interval {
   cursor: pointer;
-  position: relative; }
+  position: relative;
+  display: block;
+  float: left;
+  box-sizing: border-box;
+  border-width: 0 .125rem;
+  border-style: solid;
+  border-color: White; }
 .graft.bars .bar, .graft.stack .bar {
+  transition: background 1s, height 1s, bottom 1s;
   position: absolute;
   width: 100%; }
 .graft.bars .inactive .bar, .graft.stack .inactive .bar {
@@ -98,17 +100,19 @@
 
 .graft.stack {
   position: relative; }
-  .graft.stack table {
+  .graft.stack .set {
     position: absolute;
-    height: 25rem; }
-  .graft.stack .info {
-    display: none; }
-  .graft.stack .set.first .interval {
-    background: WhiteSmoke; }
-    .graft.stack .set.first .interval.hover {
-      background: Gainsboro; }
-  .graft.stack .bar {
-    transition: background 1s, height 1s, bottom 1s; }
+    width: 100%;
+    height: 25rem;
+    margin-top: 1.375em; }
+    .graft.stack .set.first .interval {
+      background: WhiteSmoke; }
+      .graft.stack .set.first .interval.hover {
+        background: Gainsboro; }
+    .graft.stack .set .name, .graft.stack .set .max {
+      display: none; }
+  .graft.stack .intervals, .graft.stack .interval {
+    height: 100%; }
 
 .graft.tooltip {
   border: 1px solid Gainsboro;
@@ -195,31 +199,26 @@ body {
 
 .graft.donut .set.blue, .graft.bubbles .set.blue .bubble, .graft.stack .set.blue .bar {
   background: cornflowerblue; }
-.graft .info.blue .name,
 .graft .set.blue .name,
 .graft .name.blue {
   color: cornflowerblue; }
 .graft.donut .set.red, .graft.bubbles .set.red .bubble, .graft.stack .set.red .bar {
   background: crimson; }
-.graft .info.red .name,
 .graft .set.red .name,
 .graft .name.red {
   color: crimson; }
 .graft.donut .set.green, .graft.bubbles .set.green .bubble, .graft.stack .set.green .bar {
   background: limegreen; }
-.graft .info.green .name,
 .graft .set.green .name,
 .graft .name.green {
   color: limegreen; }
 .graft.donut .set.orange, .graft.bubbles .set.orange .bubble, .graft.stack .set.orange .bar {
   background: orange; }
-.graft .info.orange .name,
 .graft .set.orange .name,
 .graft .name.orange {
   color: orange; }
 .graft.donut .set.purple, .graft.bubbles .set.purple .bubble, .graft.stack .set.purple .bar {
   background: purple; }
-.graft .info.purple .name,
 .graft .set.purple .name,
 .graft .name.purple {
   color: purple; }
@@ -228,5 +227,3 @@ body {
   text-decoration: none; }
   .graft a:hover {
     text-decoration: underline; }
-.graft.templates {
-  display: none; }

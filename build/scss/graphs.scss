@@ -3,34 +3,32 @@
   &.bars,
   &.stack {
 
-    &, table {
-      width: 100%;
-    }
-
-    th {
-      font-weight: normal;
-      text-align: left;
-    }
-
     .max {
-      text-align: right;
+      float: right;
       color: Silver;
     }
 
-    .info td {
-      padding-top: 1rem;
+    .set {
+      margin-bottom: 1rem;
     }
 
-    table, .interval {
-      border: .25em solid White;
+    .intervals {
+      @include clearfix;
     }
 
     .interval {
       cursor: pointer;
       position: relative;
+      display: block;
+      float: left;
+      box-sizing: border-box;
+      border-width: 0 .125rem;
+      border-style: solid;
+      border-color: White;
     }
 
     .bar {
+      transition: background 1s, height 1s, bottom 1s;
       position: absolute;
       width: 100%;
     }
