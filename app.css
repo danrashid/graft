@@ -1,6 +1,8 @@
 /* http://nicolasgallagher.com/micro-clearfix-hack/ */
 .graft.bars > .max {
   display: none; }
+.graft.bars .set {
+  margin-bottom: 1rem; }
 .graft.bars .interval {
   height: 5rem;
   background: WhiteSmoke; }
@@ -76,8 +78,6 @@
 .graft.bars .max, .graft.stack .max {
   float: right;
   color: Silver; }
-.graft.bars .set, .graft.stack .set {
-  margin-bottom: 1rem; }
 .graft.bars .intervals::after, .graft.stack .intervals::after {
   content: ' ';
   display: table;
@@ -99,12 +99,13 @@
   background: Silver !important; }
 
 .graft.stack {
-  position: relative; }
+  position: relative;
+  min-height: 27.375rem; }
   .graft.stack .set {
     position: absolute;
     width: 100%;
     height: 25rem;
-    margin-top: 1.375em; }
+    margin: 1.375rem 0 1rem; }
     .graft.stack .set.first .interval {
       background: WhiteSmoke; }
       .graft.stack .set.first .interval.hover {

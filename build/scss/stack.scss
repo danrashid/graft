@@ -1,11 +1,16 @@
 .graft.stack {
+  $height: 25rem;
+  $topMargin: 1.375rem;
+  $bottomMargin: 1rem;
+
   position: relative;
+  min-height: $topMargin + $height + $bottomMargin;
 
   .set {
     position: absolute;
     width: 100%;
-    height: 25rem;
-    margin-top: 1.375em;
+    height: $height;
+    margin: $topMargin 0 $bottomMargin;
 
     &.first .interval {
       background: WhiteSmoke;
