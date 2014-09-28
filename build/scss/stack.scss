@@ -25,7 +25,12 @@
     }
   }
 
-  .intervals, .interval {
+  .intervals {
     height: 100%;
+  }
+
+  .bar {
+    position: absolute;
+    width: 100%;
   }
 }
