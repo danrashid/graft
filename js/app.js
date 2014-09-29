@@ -6,10 +6,7 @@ var Graft = {};
 Graft.percent = function (dec, places) {
   places = places || 1;
 
-  var floorer = 100 * Math.pow(10, places),
-    floored = Math.floor(dec * floorer) / floorer;
-
-  return +((floored * 100).toFixed(places));
+  return +(dec * 100).toFixed(places);
 };
 
 Graft.toggle = function() {

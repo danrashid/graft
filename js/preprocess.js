@@ -37,7 +37,7 @@ Graft.preprocess = function (data) {
         values: d.values,
         total: setTotal,
         ratio: ratio,
-        percent: Graft.percent(ratio),
+        percent: Graft.percent(ratio, 2),
         max: d.values.reduce(function (a, b) {
           return Math.max(a, b[1]);
         }, 0),
