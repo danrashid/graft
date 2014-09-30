@@ -37,7 +37,7 @@ Graft.preprocess = function (data) {
         values: d.values,
         total: setTotal,
         ratio: ratio,
-        percent: Graft.percent(ratio, 2),
+        percent: Graft.percent(ratio),
         max: d.values.reduce(function (a, b) {
           return Math.max(a, b[1]);
         }, 0),
@@ -53,7 +53,7 @@ Graft.preprocess = function (data) {
       return Math.max(a, b.sqrt);
     }, 0);
 
-  return {
+  Graft.data = {
     total: total,
     max: max,
     duration: duration,

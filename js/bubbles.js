@@ -16,7 +16,14 @@ Graft.bubbles = (function() {
         s.width = Graft.percent(Math.max(maxWidth * (s.sqrt / Graft.data.maxSqrt), minWidth));
       });
 
-    $(Mustache.render(template, Graft.data))
+    $(Mustache.render(template, {
+        sets: Graft.data.sets,
+        abbreviate: function () {
+          return function (text, render) {
+            return Graft.abbreviate(render(text));
+          };
+        }
+      }))
       .appendTo($(sel))
       .find('.bubble')
         .height(function () {

@@ -62,3 +62,31 @@ Graft.lookup = function (setId) {
   });
   return ret;
 };
+
+Graft.abbreviate = function (dec, places) {
+  places = places || 1;
+
+  var div = 1,
+    postfix = '';
+
+  switch (true) {
+    case dec / 1000000000000 >= 1:
+      div = 1000000000000;
+      postfix = 'T';
+      break;
+    case dec / 1000000000 >= 1:
+      div = 1000000000;
+      postfix = 'B';
+      break;
+    case dec / 1000000 >= 1:
+      div = 1000000;
+      postfix = 'M';
+      break;
+    case dec / 1000 >= 1:
+      div = 1000;
+      postfix = 'K';
+      break;
+  }
+
+  return +(dec / div).toFixed(places) + postfix;
+};
