@@ -1,7 +1,7 @@
 graft
 =====
 
-A handful of time-series graphs
+A fairly nuts experiment to draw graphs without a graphing library
 
 [View the Demo](http://danrashid.github.io/graft/)
 
